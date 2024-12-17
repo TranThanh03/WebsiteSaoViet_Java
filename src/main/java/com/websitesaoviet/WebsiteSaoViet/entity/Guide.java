@@ -1,24 +1,40 @@
 package com.websitesaoviet.WebsiteSaoViet.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "huongdanvien")
+
 public class Guide {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "mahdv", unique = true)
     private String MaHDV;
+
+    @Column(name = "tenhdv")
     private String TenHDV;
+
+    @Column(name = "anhhdv")
     private String AnhHDV;
+
+    @Column(name = "gioi_tinh")
     private String GioiTinh;
+
+    @Column(name = "ngay_sinh")
     private LocalDate NgaySinh;
+
+    @Column(name = "sdt")
     private String SDT;
+
+    @Column(name = "email")
     private String Email;
+
+    @Column(name = "mo_ta")
     private String MoTa;
+
+    @Column(name = "danh_gia")
     private int DanhGia;
 
     public String getMaHDV() {
@@ -26,7 +42,7 @@ public class Guide {
     }
 
     public void setMaHDV(String maHDV) {
-        MaHDV = maHDV;
+        this.MaHDV = maHDV;
     }
 
     public String getTenHDV() {
@@ -34,7 +50,7 @@ public class Guide {
     }
 
     public void setTenHDV(String tenHDV) {
-        TenHDV = tenHDV;
+        this.TenHDV = tenHDV;
     }
 
     public String getAnhHDV() {
@@ -42,7 +58,7 @@ public class Guide {
     }
 
     public void setAnhHDV(String anhHDV) {
-        AnhHDV = anhHDV;
+        this.AnhHDV = anhHDV;
     }
 
     public String getGioiTinh() {
@@ -50,7 +66,7 @@ public class Guide {
     }
 
     public void setGioiTinh(String gioiTinh) {
-        GioiTinh = gioiTinh;
+        this.GioiTinh = gioiTinh;
     }
 
     public LocalDate getNgaySinh() {
@@ -58,7 +74,7 @@ public class Guide {
     }
 
     public void setNgaySinh(LocalDate ngaySinh) {
-        NgaySinh = ngaySinh;
+        this.NgaySinh = ngaySinh;
     }
 
     public String getSDT() {
@@ -74,7 +90,7 @@ public class Guide {
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.Email = email;
     }
 
     public String getMoTa() {
@@ -82,7 +98,7 @@ public class Guide {
     }
 
     public void setMoTa(String moTa) {
-        MoTa = moTa;
+        this.MoTa = moTa;
     }
 
     public int getDanhGia() {
@@ -90,6 +106,6 @@ public class Guide {
     }
 
     public void setDanhGia(int danhGia) {
-        DanhGia = danhGia;
+        this.DanhGia = danhGia;
     }
 }

@@ -17,6 +17,13 @@ public class AccountService {
     public Account createAccount(AccountCreationRequest request) {
         Account account = new Account();
 
+        if(accountRepository.existsBySdt(request.getSDT())) {
+            throw new RuntimeException("Số điện thoại đã tồn tại!");
+        }
+        else if (accountRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email đã tồn tại!");
+        }
+
         account.setSDT(request.getSDT());
         account.setEmail(request.getEmail());
         account.setMatKhau(request.getMatKhau());

@@ -1,22 +1,34 @@
 package com.websitesaoviet.WebsiteSaoViet.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "phancong")
+
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mapc", unique = true)
     private int MaPC;
+
+    @Column(name = "ma_tour")
     private String MaTour;
+
+    @Column(name = "mahdv")
     private String MaHDV;
+
+    @Column(name = "giahdv")
     private String GiaHDV;
+
+    @Column(name = "ngaykh")
     private LocalDate NgayKH;
+
+    @Column(name = "ngaykt")
     private LocalDate NgayKT;
+
+    @Column(name = "trang_thai")
     private String TrangThai;
 
     public int getMaPC() {
@@ -24,7 +36,7 @@ public class Task {
     }
 
     public void setMaPC(int maPC) {
-        MaPC = maPC;
+        this.MaPC = maPC;
     }
 
     public String getMaTour() {
@@ -32,7 +44,7 @@ public class Task {
     }
 
     public void setMaTour(String maTour) {
-        MaTour = maTour;
+        this.MaTour = maTour;
     }
 
     public String getMaHDV() {
@@ -40,7 +52,7 @@ public class Task {
     }
 
     public void setMaHDV(String maHDV) {
-        MaHDV = maHDV;
+        this.MaHDV = maHDV;
     }
 
     public String getGiaHDV() {
@@ -48,7 +60,7 @@ public class Task {
     }
 
     public void setGiaHDV(String giaHDV) {
-        GiaHDV = giaHDV;
+        this.GiaHDV = giaHDV;
     }
 
     public LocalDate getNgayKH() {
@@ -56,7 +68,7 @@ public class Task {
     }
 
     public void setNgayKH(LocalDate ngayKH) {
-        NgayKH = ngayKH;
+        this.NgayKH = ngayKH;
     }
 
     public LocalDate getNgayKT() {
@@ -64,7 +76,7 @@ public class Task {
     }
 
     public void setNgayKT(LocalDate ngayKT) {
-        NgayKT = ngayKT;
+        this.NgayKT = ngayKT;
     }
 
     public String getTrangThai() {
@@ -72,6 +84,6 @@ public class Task {
     }
 
     public void setTrangThai(String trangThai) {
-        TrangThai = trangThai;
+        this.TrangThai = trangThai;
     }
 }

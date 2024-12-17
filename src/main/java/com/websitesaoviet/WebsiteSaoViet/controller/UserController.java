@@ -2,7 +2,6 @@ package com.websitesaoviet.WebsiteSaoViet.controller;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import com.websitesaoviet.WebsiteSaoViet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,16 +1,20 @@
 package com.websitesaoviet.WebsiteSaoViet.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "khachhang")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "makh", unique = true)
     private String MaKH;
+
+    @Column(name = "tenkh")
     private String TenKH;
+
+    @Column(name = "matk")
     private String MaTK;
 
     public String getMaKH() {
@@ -18,7 +22,7 @@ public class User {
     }
 
     public void setMaKH(String maKH) {
-        MaKH = maKH;
+        this.MaKH = maKH;
     }
 
     public String getTenKH() {
@@ -26,7 +30,7 @@ public class User {
     }
 
     public void setTenKH(String tenKH) {
-        TenKH = tenKH;
+        this.TenKH = tenKH;
     }
 
     public String getMaTK() {
@@ -34,6 +38,6 @@ public class User {
     }
 
     public void setMaTK(String maTK) {
-        MaTK = maTK;
+        this.MaTK = maTK;
     }
 }

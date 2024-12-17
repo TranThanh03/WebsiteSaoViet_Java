@@ -1,18 +1,26 @@
 package com.websitesaoviet.WebsiteSaoViet.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "taikhoan")
+
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "matk", unique = true)
     private String MaTK;
-    private String SDT;
-    private String Email;
+
+    @Column(name = "sdt", unique = true)
+    private String sdt;
+
+    @Column(name = "email", unique = true)
+    private String email;
+
+    @Column(name = "mat_khau", unique = true)
     private String MatKhau;
+
+    @Column(name = "quyen", unique = true)
     private String Quyen;
 
     public String getMaTK() {
@@ -24,19 +32,19 @@ public class Account {
     }
 
     public String getSDT() {
-        return SDT;
+        return sdt;
     }
 
     public void setSDT(String SDT) {
-        this.SDT = SDT;
+        this.sdt = SDT;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getMatKhau() {
@@ -44,7 +52,7 @@ public class Account {
     }
 
     public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
+        this.MatKhau = matKhau;
     }
 
     public String getQuyen() {
@@ -52,6 +60,6 @@ public class Account {
     }
 
     public void setQuyen(String quyen) {
-        Quyen = quyen;
+        this.Quyen = quyen;
     }
 }

@@ -1,20 +1,32 @@
 package com.websitesaoviet.WebsiteSaoViet.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "tour")
+
 public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "ma_tour", unique = true)
     private String MaTour;
+
+    @Column(name = "ten_tour")
     private String TenTour;
+
+    @Column(name = "anh_tour")
     private String AnhTour;
+
+    @Column(name = "gioi_thieu")
     private String GioiThieu;
+
+    @Column(name = "mo_ta")
     private String MoTa;
+
+    @Column(name = "macd")
     private int MaCD;
+
+    @Column(name = "gia_tour")
     private String GiaTour;
 
     public String getMaTour() {
@@ -22,7 +34,7 @@ public class Tour {
     }
 
     public void setMaTour(String maTour) {
-        MaTour = maTour;
+        this.MaTour = maTour;
     }
 
     public String getTenTour() {
@@ -30,7 +42,7 @@ public class Tour {
     }
 
     public void setTenTour(String tenTour) {
-        TenTour = tenTour;
+        this.TenTour = tenTour;
     }
 
     public String getAnhTour() {
@@ -38,7 +50,7 @@ public class Tour {
     }
 
     public void setAnhTour(String anhTour) {
-        AnhTour = anhTour;
+        this.AnhTour = anhTour;
     }
 
     public String getGioiThieu() {
@@ -46,7 +58,7 @@ public class Tour {
     }
 
     public void setGioiThieu(String gioiThieu) {
-        GioiThieu = gioiThieu;
+        this.GioiThieu = gioiThieu;
     }
 
     public String getMoTa() {
@@ -54,7 +66,7 @@ public class Tour {
     }
 
     public void setMoTa(String moTa) {
-        MoTa = moTa;
+        this.MoTa = moTa;
     }
 
     public int getMaCD() {
@@ -62,7 +74,7 @@ public class Tour {
     }
 
     public void setMaCD(int maCD) {
-        MaCD = maCD;
+        this.MaCD = maCD;
     }
 
     public String getGiaTour() {
@@ -70,6 +82,6 @@ public class Tour {
     }
 
     public void setGiaTour(String giaTour) {
-        GiaTour = giaTour;
+        this.GiaTour = giaTour;
     }
 }

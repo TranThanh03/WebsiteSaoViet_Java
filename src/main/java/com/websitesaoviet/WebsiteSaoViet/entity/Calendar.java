@@ -1,31 +1,59 @@
 package com.websitesaoviet.WebsiteSaoViet.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "dondat")
+
 public class Calendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "madd", unique = true)
     private int MaDD;
+
+    @Column(name = "makh")
     private String MaKH;
+
+    @Column(name = "tenkh")
     private String TenKH;
+
+    @Column(name = "ma_tour")
     private String MaTour;
+
+    @Column(name = "ten_tour")
     private String TenTour;
+
+    @Column(name = "mahdv")
     private String MaHDV;
+
+    @Column(name = "tenhdv")
     private String TenHDV;
+
+    @Column(name = "mapc")
     private String MaPC;
+
+    @Column(name = "ngaykh")
     private LocalDate NgayKH;
+
+    @Column(name = "ngaykt")
     private LocalDate NgayKT;
+
+    @Column(name = "gia_tour")
     private String GiaTour;
+
+    @Column(name = "giahdv")
     private String GiaHDV;
+
+    @Column(name = "tong_tien")
     private String TongTien;
+
+    @Column(name = "thoi_gian_dat")
     private LocalDateTime ThoiGianDat;
+
+    @Column(name = "trang_thai")
     private String TrangThai;
 
     public int getMaDD() {
@@ -33,7 +61,7 @@ public class Calendar {
     }
 
     public void setMaDD(int maDD) {
-        MaDD = maDD;
+        this.MaDD = maDD;
     }
 
     public String getMaKH() {
@@ -41,7 +69,7 @@ public class Calendar {
     }
 
     public void setMaKH(String maKH) {
-        MaKH = maKH;
+        this.MaKH = maKH;
     }
 
     public String getTenKH() {
@@ -49,7 +77,7 @@ public class Calendar {
     }
 
     public void setTenKH(String tenKH) {
-        TenKH = tenKH;
+        this.TenKH = tenKH;
     }
 
     public String getMaTour() {
@@ -57,7 +85,7 @@ public class Calendar {
     }
 
     public void setMaTour(String maTour) {
-        MaTour = maTour;
+        this.MaTour = maTour;
     }
 
     public String getTenTour() {
@@ -65,7 +93,7 @@ public class Calendar {
     }
 
     public void setTenTour(String tenTour) {
-        TenTour = tenTour;
+        this.TenTour = tenTour;
     }
 
     public String getMaHDV() {
@@ -73,7 +101,7 @@ public class Calendar {
     }
 
     public void setMaHDV(String maHDV) {
-        MaHDV = maHDV;
+        this.MaHDV = maHDV;
     }
 
     public String getTenHDV() {
@@ -81,7 +109,7 @@ public class Calendar {
     }
 
     public void setTenHDV(String tenHDV) {
-        TenHDV = tenHDV;
+        this.TenHDV = tenHDV;
     }
 
     public String getMaPC() {
@@ -89,7 +117,7 @@ public class Calendar {
     }
 
     public void setMaPC(String maPC) {
-        MaPC = maPC;
+        this.MaPC = maPC;
     }
 
     public LocalDate getNgayKH() {
@@ -97,7 +125,7 @@ public class Calendar {
     }
 
     public void setNgayKH(LocalDate ngayKH) {
-        NgayKH = ngayKH;
+        this.NgayKH = ngayKH;
     }
 
     public LocalDate getNgayKT() {
@@ -105,7 +133,7 @@ public class Calendar {
     }
 
     public void setNgayKT(LocalDate ngayKT) {
-        NgayKT = ngayKT;
+        this.NgayKT = ngayKT;
     }
 
     public String getGiaTour() {
@@ -113,7 +141,7 @@ public class Calendar {
     }
 
     public void setGiaTour(String giaTour) {
-        GiaTour = giaTour;
+        this.GiaTour = giaTour;
     }
 
     public String getGiaHDV() {
@@ -121,7 +149,7 @@ public class Calendar {
     }
 
     public void setGiaHDV(String giaHDV) {
-        GiaHDV = giaHDV;
+        this.GiaHDV = giaHDV;
     }
 
     public String getTongTien() {
@@ -129,7 +157,7 @@ public class Calendar {
     }
 
     public void setTongTien(String tongTien) {
-        TongTien = tongTien;
+        this.TongTien = tongTien;
     }
 
     public LocalDateTime getThoiGianDat() {
@@ -137,7 +165,7 @@ public class Calendar {
     }
 
     public void setThoiGianDat(LocalDateTime thoiGianDat) {
-        ThoiGianDat = thoiGianDat;
+        this.ThoiGianDat = thoiGianDat;
     }
 
     public String getTrangThai() {
@@ -145,6 +173,6 @@ public class Calendar {
     }
 
     public void setTrangThai(String trangThai) {
-        TrangThai = trangThai;
+        this.TrangThai = trangThai;
     }
 }
