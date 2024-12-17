@@ -1,9 +1,9 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.repository.AccountRepository;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
+import com.websitesaoviet.WebsiteSaoViet.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,42 +12,47 @@ import java.util.List;
 @Service
 public class TourService {
     @Autowired
-    private AccountRepository accountRepository;
+    private TourRepository tourRepository;
 
-    public Account createRequest(AccountCreationRequest request) {
-        Account account = new Account();
+    public Tour createTour(TourCreationRequest request) {
+        Tour tour = new Tour();
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
-        account.setMatKhau(request.getMatKhau());
-        account.setQuyen("user");
+        tour.setTenTour(request.getTenTour());
+        tour.setAnhTour(request.getAnhTour());
+        tour.setGioiThieu(request.getGioiThieu());
+        tour.setMoTa(request.getMoTa());
+        tour.setMaCD(request.getMaCD());
+        tour.setGiaTour(request.getGiaTour());
 
-        return accountRepository.save(account);
+        return tourRepository.save(tour);
     }
 
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    public List<Tour> getTours() {
+        return tourRepository.findAll();
     }
 
-    public Account getAccountById(String id) {
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
+    public Tour getTourById(String id) {
+        return tourRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tour không hợp lệ!"));
     }
 
-    public Account updateAccount(String id, AccountUpdateRequest request) {
-        Account account = getAccountById(id);
+    public Tour updateTour(String id, TourUpdateRequest request) {
+        Tour tour = getTourById(id);
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
+        tour.setTenTour(request.getTenTour());
+        tour.setGioiThieu(request.getGioiThieu());
+        tour.setMoTa(request.getMoTa());
+        tour.setMaCD(request.getMaCD());
+        tour.setGiaTour(request.getGiaTour());
 
-        if(request.getMatKhau() != null && !request.getMatKhau().isEmpty()) {
-            account.setMatKhau(request.getMatKhau());
+        if(request.getAnhTour() != null && !request.getAnhTour().isEmpty()) {
+            tour.setAnhTour(request.getAnhTour());
         }
 
-        return accountRepository.save(account);
+        return tourRepository.save(tour);
     }
 
-    public void deleteAccount(String id) {
-        accountRepository.deleteById(id);
+    public void deleteTour(String id) {
+        tourRepository.deleteById(id);
     }
 }

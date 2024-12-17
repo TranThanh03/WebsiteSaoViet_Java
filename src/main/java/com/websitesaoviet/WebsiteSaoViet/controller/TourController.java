@@ -1,9 +1,9 @@
 package com.websitesaoviet.WebsiteSaoViet.controller;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.service.AccountService;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
+import com.websitesaoviet.WebsiteSaoViet.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +14,32 @@ import java.util.List;
 @RequestMapping("/tours")
 public class TourController {
     @Autowired
-    private AccountService accountService;
+    private TourService tourService;
 
     @PostMapping()
-    Account createAccount(@RequestBody AccountCreationRequest request) {
-        return accountService.createRequest(request);
+    Tour createTour(@RequestBody TourCreationRequest request) {
+        return tourService.createTour(request);
     }
 
     @GetMapping()
-    List<Account> getAccounts() {
-        return accountService.getAccounts();
+    List<Tour> getTours() {
+        return tourService.getTours();
     }
 
     @GetMapping("/{id}")
-    Account getAccountById(@PathVariable String id) {
-        return accountService.getAccountById(id);
+    Tour getTourById(@PathVariable String id) {
+        return tourService.getTourById(id);
     }
 
     @PutMapping("/{id}")
-    Account updateAccount(@PathVariable String id, @RequestBody AccountUpdateRequest request) {
-        return accountService.updateAccount(id, request);
+    Tour updateTour(@PathVariable String id, @RequestBody TourUpdateRequest request) {
+        return tourService.updateTour(id, request);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteAccount(@PathVariable String id) {
-        accountService.deleteAccount(id);
-        String message = String.format("Xóa tài khoản thành công.");
+    ResponseEntity<String> deleteTour(@PathVariable String id) {
+        tourService.deleteTour(id);
+        String message = String.format("Xóa Tour thành công.");
         return ResponseEntity.ok(message);
     }
 }

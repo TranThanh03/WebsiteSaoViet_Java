@@ -1,9 +1,9 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.repository.AccountRepository;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.Task;
+import com.websitesaoviet.WebsiteSaoViet.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,42 +12,38 @@ import java.util.List;
 @Service
 public class TaskService {
     @Autowired
-    private AccountRepository accountRepository;
+    private TaskRepository taskRepository;
 
-    public Account createRequest(AccountCreationRequest request) {
-        Account account = new Account();
+    public Task createTask(TaskCreationRequest request) {
+        Task task = new Task();
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
-        account.setMatKhau(request.getMatKhau());
-        account.setQuyen("user");
+        task.setMaTour(request.getMaTour());
+        task.setMaHDV(request.getMaHDV());
+        task.setGiaHDV(request.getGiaHDV());
+        task.setNgayKH(request.getNgayKH());
+        task.setNgayKT(request.getNgayKT());
 
-        return accountRepository.save(account);
+        return taskRepository.save(task);
     }
 
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    public List<Task> getTasks() {
+        return taskRepository.findAll();
     }
 
-    public Account getAccountById(String id) {
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
+    public Task getTaskById(String id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Lịch phân công không hợp lệ!"));
     }
 
-    public Account updateAccount(String id, AccountUpdateRequest request) {
-        Account account = getAccountById(id);
+    public Task updateTask(String id, TaskUpdateRequest request) {
+        Task task = getTaskById(id);
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
+        task.setTrangThai(request.getTrangThai());
 
-        if(request.getMatKhau() != null && !request.getMatKhau().isEmpty()) {
-            account.setMatKhau(request.getMatKhau());
-        }
-
-        return accountRepository.save(account);
+        return taskRepository.save(task);
     }
 
-    public void deleteAccount(String id) {
-        accountRepository.deleteById(id);
+    public void deleteTask(String id) {
+        taskRepository.deleteById(id);
     }
 }

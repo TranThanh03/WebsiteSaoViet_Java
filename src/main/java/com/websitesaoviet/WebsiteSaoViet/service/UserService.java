@@ -1,9 +1,9 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.repository.AccountRepository;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.UserCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.User;
+import com.websitesaoviet.WebsiteSaoViet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,42 +12,35 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
-    public Account createRequest(AccountCreationRequest request) {
-        Account account = new Account();
+    public User createUser(UserCreationRequest request) {
+        User user = new User();
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
-        account.setMatKhau(request.getMatKhau());
-        account.setQuyen("user");
+        user.setTenKH(request.getTenKH());
+        user.setMaTK(request.getMaTK());
 
-        return accountRepository.save(account);
+        return userRepository.save(user);
     }
 
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 
-    public Account getAccountById(String id) {
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
+    public User getUserById(String id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Khách hàng không hợp lệ!"));
     }
 
-    public Account updateAccount(String id, AccountUpdateRequest request) {
-        Account account = getAccountById(id);
+    public User updateUser(String id, UserUpdateRequest request) {
+        User user = getUserById(id);
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
+        user.setTenKH(request.getTenKH());
 
-        if(request.getMatKhau() != null && !request.getMatKhau().isEmpty()) {
-            account.setMatKhau(request.getMatKhau());
-        }
-
-        return accountRepository.save(account);
+        return userRepository.save(user);
     }
 
     public void deleteAccount(String id) {
-        accountRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 }

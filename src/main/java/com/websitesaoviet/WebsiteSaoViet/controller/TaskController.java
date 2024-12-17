@@ -1,9 +1,9 @@
 package com.websitesaoviet.WebsiteSaoViet.controller;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.service.AccountService;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.Task;
+import com.websitesaoviet.WebsiteSaoViet.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +14,32 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
     @Autowired
-    private AccountService accountService;
+    private TaskService taskService;
 
     @PostMapping()
-    Account createAccount(@RequestBody AccountCreationRequest request) {
-        return accountService.createRequest(request);
+    Task createTask(@RequestBody TaskCreationRequest request) {
+        return taskService.createTask(request);
     }
 
     @GetMapping()
-    List<Account> getAccounts() {
-        return accountService.getAccounts();
+    List<Task> getTasks() {
+        return taskService.getTasks();
     }
 
     @GetMapping("/{id}")
-    Account getAccountById(@PathVariable String id) {
-        return accountService.getAccountById(id);
+    Task getTaskById(@PathVariable String id) {
+        return taskService.getTaskById(id);
     }
 
     @PutMapping("/{id}")
-    Account updateAccount(@PathVariable String id, @RequestBody AccountUpdateRequest request) {
-        return accountService.updateAccount(id, request);
+    Task updateTask(@PathVariable String id, @RequestBody TaskUpdateRequest request) {
+        return taskService.updateTask(id, request);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteAccount(@PathVariable String id) {
-        accountService.deleteAccount(id);
-        String message = String.format("Xóa tài khoản thành công.");
+    ResponseEntity<String> deleteTask(@PathVariable String id) {
+        taskService.deleteTask(id);
+        String message = String.format("Xóa lịch phân công thành công.");
         return ResponseEntity.ok(message);
     }
 }

@@ -1,9 +1,10 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.repository.AccountRepository;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.Guide;
+import com.websitesaoviet.WebsiteSaoViet.repository.GuideRepository;
+import com.websitesaoviet.WebsiteSaoViet.repository.GuideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,42 +13,51 @@ import java.util.List;
 @Service
 public class GuideService {
     @Autowired
-    private AccountRepository accountRepository;
+    private GuideRepository guideRepository;
 
-    public Account createRequest(AccountCreationRequest request) {
-        Account account = new Account();
+    public Guide createGuide(GuideCreationRequest request) {
+        Guide guide = new Guide();
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
-        account.setMatKhau(request.getMatKhau());
-        account.setQuyen("user");
+        guide.setTenHDV(request.getTenHDV());
+        guide.setAnhHDV(request.getAnhHDV());
+        guide.setGioiTinh(request.getGioiTinh());
+        guide.setNgaySinh(request.getNgaySinh());
+        guide.setSDT(request.getSDT());
+        guide.setEmail(request.getEmail());
+        guide.setMoTa(request.getMoTa());
+        guide.setDanhGia(request.getDanhGia());
 
-        return accountRepository.save(account);
+        return guideRepository.save(guide);
     }
 
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    public List<Guide> getGuides() {
+        return guideRepository.findAll();
     }
 
-    public Account getAccountById(String id) {
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
+    public Guide getGuideById(String id) {
+        return guideRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Hướng dẫn viên không hợp lệ!"));
     }
 
-    public Account updateAccount(String id, AccountUpdateRequest request) {
-        Account account = getAccountById(id);
+    public Guide updateAccount(String id, GuideUpdateRequest request) {
+        Guide guide = getGuideById(id);
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
+        guide.setTenHDV(request.getTenHDV());
+        guide.setGioiTinh(request.getGioiTinh());
+        guide.setNgaySinh(request.getNgaySinh());
+        guide.setSDT(request.getSDT());
+        guide.setEmail(request.getEmail());
+        guide.setMoTa(request.getMoTa());
+        guide.setDanhGia(request.getDanhGia());
 
-        if(request.getMatKhau() != null && !request.getMatKhau().isEmpty()) {
-            account.setMatKhau(request.getMatKhau());
+        if(request.getAnhHDV() != null && !request.getAnhHDV().isEmpty()) {
+            guide.setAnhHDV(request.getAnhHDV());
         }
 
-        return accountRepository.save(account);
+        return guideRepository.save(guide);
     }
 
-    public void deleteAccount(String id) {
-        accountRepository.deleteById(id);
+    public void deleteGuide(String id) {
+        guideRepository.deleteById(id);
     }
 }

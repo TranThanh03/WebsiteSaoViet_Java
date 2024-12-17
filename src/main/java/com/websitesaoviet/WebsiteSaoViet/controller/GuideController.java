@@ -1,9 +1,9 @@
 package com.websitesaoviet.WebsiteSaoViet.controller;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
-import com.websitesaoviet.WebsiteSaoViet.entity.Account;
-import com.websitesaoviet.WebsiteSaoViet.service.AccountService;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.entity.Guide;
+import com.websitesaoviet.WebsiteSaoViet.service.GuideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +14,32 @@ import java.util.List;
 @RequestMapping("/guides")
 public class GuideController {
     @Autowired
-    private AccountService accountService;
+    private GuideService guideService;
 
     @PostMapping()
-    Account createAccount(@RequestBody AccountCreationRequest request) {
-        return accountService.createRequest(request);
+    Guide createGuide(@RequestBody GuideCreationRequest request) {
+        return guideService.createGuide(request);
     }
 
     @GetMapping()
-    List<Account> getAccounts() {
-        return accountService.getAccounts();
+    List<Guide> getGuides() {
+        return guideService.getGuides();
     }
 
     @GetMapping("/{id}")
-    Account getAccountById(@PathVariable String id) {
-        return accountService.getAccountById(id);
+    Guide getGuideById(@PathVariable String id) {
+        return guideService.getGuideById(id);
     }
 
     @PutMapping("/{id}")
-    Account updateAccount(@PathVariable String id, @RequestBody AccountUpdateRequest request) {
-        return accountService.updateAccount(id, request);
+    Guide updateGuide(@PathVariable String id, @RequestBody GuideUpdateRequest request) {
+        return guideService.updateAccount(id, request);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteAccount(@PathVariable String id) {
-        accountService.deleteAccount(id);
-        String message = String.format("Xóa tài khoản thành công.");
+    ResponseEntity<String> deleteGuide(@PathVariable String id) {
+        guideService.deleteGuide(id);
+        String message = String.format("Xóa hướng dẫn viên thành công.");
         return ResponseEntity.ok(message);
     }
 }
