@@ -4,16 +4,18 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Guide;
 import com.websitesaoviet.WebsiteSaoViet.repository.GuideRepository;
-import com.websitesaoviet.WebsiteSaoViet.repository.GuideRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class GuideService {
-    @Autowired
-    private GuideRepository guideRepository;
+    GuideRepository guideRepository;
 
     public Guide createGuide(GuideCreationRequest request) {
         Guide guide = new Guide();

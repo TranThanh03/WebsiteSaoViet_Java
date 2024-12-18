@@ -2,32 +2,41 @@ package com.websitesaoviet.WebsiteSaoViet.service;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.response.AccountResponse;
 import com.websitesaoviet.WebsiteSaoViet.entity.Account;
+import com.websitesaoviet.WebsiteSaoViet.exception.AppException;
+import com.websitesaoviet.WebsiteSaoViet.exception.ErrorCode;
+import com.websitesaoviet.WebsiteSaoViet.mapper.AccountMapper;
 import com.websitesaoviet.WebsiteSaoViet.repository.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AccountService {
-    @Autowired
-    private AccountRepository accountRepository;
+    AccountRepository accountRepository;
+    AccountMapper accountMapper;
 
     public Account createAccount(AccountCreationRequest request) {
-        Account account = new Account();
-
-        if(accountRepository.existsBySdt(request.getSDT())) {
-            throw new RuntimeException("Số điện thoại đã tồn tại!");
+        if(accountRepository.existsAccountBySdt(request.getSDT())) {
+            throw new AppException(ErrorCode.PHONENUMBER_EXISTED);
         }
-        else if (accountRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email đã tồn tại!");
+        else if (accountRepository.existsAccountByEmail(request.getEmail())) {
+            throw new AppException(ErrorCode.EMAIL_EXISTED);
         }
+        Account account = accountMapper.toAccount(request);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
-        account.setSDT(request.getSDT());
-        account.setEmail(request.getEmail());
-        account.setMatKhau(request.getMatKhau());
+        account.setMatKhau(passwordEncoder.encode(request.getMatKhau()));
         account.setQuyen("user");
+        account.setSdt(request.getSDT());
 
         return accountRepository.save(account);
     }
@@ -36,22 +45,25 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-    public Account getAccountById(String id) {
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
+    public AccountResponse getAccountById(String id) {
+        return accountMapper.toAccountResponse(accountRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!")));
     }
 
-    public Account updateAccount(String id, AccountUpdateRequest request) {
-        Account account = getAccountById(id);
+    public AccountResponse updateAccount(String id, AccountUpdateRequest request) {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
 
-        account.setSDT(request.getSDT());
+        account.setSdt(request.getSDT());
         account.setEmail(request.getEmail());
 
         if(request.getMatKhau() != null && !request.getMatKhau().isEmpty()) {
-            account.setMatKhau(request.getMatKhau());
+            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+
+            account.setMatKhau(passwordEncoder.encode(request.getMatKhau()));
         }
 
-        return accountRepository.save(account);
+        return accountMapper.toAccountResponse(accountRepository.save(account));
     }
 
     public void deleteAccount(String id) {

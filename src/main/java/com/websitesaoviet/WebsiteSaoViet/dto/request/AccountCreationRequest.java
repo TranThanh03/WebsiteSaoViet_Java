@@ -1,40 +1,21 @@
 package com.websitesaoviet.WebsiteSaoViet.dto.request;
 
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class AccountCreationRequest {
-    private String SDT;
-    private String Email;
-    private String MatKhau;
-    private String Quyen;
-
-    public String getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getMatKhau() {
-        return MatKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
-    }
-
-    public String getQuyen() {
-        return Quyen;
-    }
-
-    public void setQuyen(String quyen) {
-        Quyen = quyen;
-    }
+    @Pattern(regexp = "\\d{10}", message = "PHONENUMBER_INVALID")
+    String SDT;
+    String Email;
+    
+    @Size(min = 8, message = "PASSWORD_INVALID")
+    String MatKhau;
+    String Quyen = "user";
 }

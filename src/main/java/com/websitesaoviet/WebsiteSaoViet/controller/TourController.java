@@ -4,7 +4,9 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
 import com.websitesaoviet.WebsiteSaoViet.service.TourService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tours")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TourController {
-    @Autowired
-    private TourService tourService;
+    TourService tourService;
 
     @PostMapping()
     Tour createTour(@RequestBody TourCreationRequest request) {

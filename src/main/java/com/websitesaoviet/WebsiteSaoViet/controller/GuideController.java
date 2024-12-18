@@ -4,7 +4,9 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Guide;
 import com.websitesaoviet.WebsiteSaoViet.service.GuideService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/guides")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class GuideController {
-    @Autowired
-    private GuideService guideService;
+    GuideService guideService;
 
     @PostMapping()
     Guide createGuide(@RequestBody GuideCreationRequest request) {

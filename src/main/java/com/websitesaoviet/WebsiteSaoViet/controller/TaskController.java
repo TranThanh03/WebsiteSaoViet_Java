@@ -4,7 +4,9 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Task;
 import com.websitesaoviet.WebsiteSaoViet.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TaskController {
-    @Autowired
-    private TaskService taskService;
+    TaskService taskService;
 
     @PostMapping()
     Task createTask(@RequestBody TaskCreationRequest request) {

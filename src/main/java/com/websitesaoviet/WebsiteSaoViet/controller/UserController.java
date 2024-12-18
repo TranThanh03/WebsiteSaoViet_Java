@@ -4,7 +4,9 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.UserCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import com.websitesaoviet.WebsiteSaoViet.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
-    @Autowired
-    private UserService userService;
+    UserService userService;
 
     @PostMapping()
     User createUser(@RequestBody UserCreationRequest request) {

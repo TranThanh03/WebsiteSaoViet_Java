@@ -4,15 +4,18 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.UserCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import com.websitesaoviet.WebsiteSaoViet.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     public User createUser(UserCreationRequest request) {
         User user = new User();

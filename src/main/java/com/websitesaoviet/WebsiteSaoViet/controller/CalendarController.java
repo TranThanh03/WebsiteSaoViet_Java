@@ -4,17 +4,19 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.CalendarCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.CalendarUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Calendar;
 import com.websitesaoviet.WebsiteSaoViet.service.CalendarService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping("/calendars")
 public class CalendarController {
-    @Autowired
-    private CalendarService calendarService;
+    CalendarService calendarService;
 
     @PostMapping()
     Calendar createCalendar(@RequestBody CalendarCreationRequest request) {

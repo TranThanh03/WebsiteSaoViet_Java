@@ -1,22 +1,14 @@
 package com.websitesaoviet.WebsiteSaoViet.dto.request;
 
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserCreationRequest {
-    private String TenKH;
-    private String MaTK;
-
-    public String getTenKH() {
-        return TenKH;
-    }
-
-    public void setTenKH(String tenKH) {
-        TenKH = tenKH;
-    }
-
-    public String getMaTK() {
-        return MaTK;
-    }
-
-    public void setMaTK(String maTK) {
-        MaTK = maTK;
-    }
+    String TenKH;
+    String MaTK;
 }

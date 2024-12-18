@@ -2,9 +2,14 @@ package com.websitesaoviet.WebsiteSaoViet.controller;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AccountUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.response.ApiResponse;
+import com.websitesaoviet.WebsiteSaoViet.dto.response.AccountResponse;
 import com.websitesaoviet.WebsiteSaoViet.entity.Account;
 import com.websitesaoviet.WebsiteSaoViet.service.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,13 +17,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AccountController {
-    @Autowired
-    private AccountService accountService;
+    AccountService accountService;
 
     @PostMapping()
-    Account createAccount(@RequestBody AccountCreationRequest request) {
-        return accountService.createAccount(request);
+    ApiResponse<Account> createAccount(@RequestBody @Valid AccountCreationRequest request) {
+        ApiResponse<Account> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(accountService.createAccount(request));
+
+        return apiResponse;
     }
 
     @GetMapping()
@@ -27,12 +37,12 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    Account getAccountById(@PathVariable String id) {
+    AccountResponse getAccountById(@PathVariable String id) {
         return accountService.getAccountById(id);
     }
 
     @PutMapping("/{id}")
-    Account updateAccount(@PathVariable String id, @RequestBody AccountUpdateRequest request) {
+    AccountResponse updateAccount(@PathVariable String id, @RequestBody AccountUpdateRequest request) {
         return accountService.updateAccount(id, request);
     }
 

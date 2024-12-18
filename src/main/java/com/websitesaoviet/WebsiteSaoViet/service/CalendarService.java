@@ -4,16 +4,19 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.CalendarCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.CalendarUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Calendar;
 import com.websitesaoviet.WebsiteSaoViet.repository.CalendarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CalendarService {
-    @Autowired
-    private CalendarRepository calendarRepository;
+    CalendarRepository calendarRepository;
 
     public Calendar createCalendar(CalendarCreationRequest request) {
         Calendar calendar = new Calendar();

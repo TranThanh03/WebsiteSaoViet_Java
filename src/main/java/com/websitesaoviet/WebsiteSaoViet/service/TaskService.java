@@ -4,15 +4,18 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Task;
 import com.websitesaoviet.WebsiteSaoViet.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TaskService {
-    @Autowired
-    private TaskRepository taskRepository;
+    TaskRepository taskRepository;
 
     public Task createTask(TaskCreationRequest request) {
         Task task = new Task();

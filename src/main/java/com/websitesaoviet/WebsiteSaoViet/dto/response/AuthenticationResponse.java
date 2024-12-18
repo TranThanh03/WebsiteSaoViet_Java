@@ -1,4 +1,4 @@
-package com.websitesaoviet.WebsiteSaoViet.dto.request;
+package com.websitesaoviet.WebsiteSaoViet.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserUpdateRequest {
-    String TenKH;
+public class AuthenticationResponse {
+    boolean authenticated;
 }
