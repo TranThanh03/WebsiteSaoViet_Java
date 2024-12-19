@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="client/fragments/head::head"></head>
+<head th:replace="client/fragments/head :: head"></head>
 <body>
-    <div th:replace="client/fragments/header::header"></div>
+    <div th:replace="client/fragments/header :: header"></div>
     <div class="tour-details">
-        <h1>Tour <?=$tour[0]->TenTour?></h1>
+        <h1 th:text="${tour.getTenTour()}"></h1>
         <div class="tour-info">
             <div class="tour-image">
-                <img src="./Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="anh Tour">
+                <img th:src="@{/admin/img/tour/{image}(image=${tour.getAnhTour()})}" alt="Tour Image">
             </div>
             <div class="tour-infor">
                 <h2 id="introduce-tour">Giới thiệu:</h2>
-                <span id="introduce"><?=$tour[0]->GioiThieu?></span>
+                <span id="introduce" th:text="${tour.getGioiThieu()}"></span>
                 <h2 id="price-tour">Giá Tour:</h2>
-                <p id="price"><?=$tour[0]->GiaTour?>VND</p>
-                <a href="index.php?controller=guide&action=index&idTour=<?=$tour[0]->MaTour?>"><button class="book-now">Đặt ngay</button></a>
+                <p id="price" th:text="${tour.getGiaTour()} + ' VND'"></p>
+                <a th:href="@{/guides/list/id=${tour.getMaTour()}}">
+                    <button class="book-now">Đặt ngay</button>
+                </a>
             </div>
         </div>
 
         <div class="tour-schedule">
             <h2>Nội dung chi tiết</h2>
-            <div class="tour-detail">
-                <?=$tour[0]->MoTa?>
-            </div>
+            <div class="tour-detail" th:utext="${tour.getMoTa()}"></div>
         </div>
     </div>
     
-    <footer th:replace="client/fragments/footer::footer"></footer>
+    <footer th:replace="client/fragments/footer :: footer"></footer>
 </body>
 </html>
-

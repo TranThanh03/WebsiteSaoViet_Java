@@ -24,7 +24,7 @@ public class AuthenticationService {
                 request.getPassword() != null && !request.getPassword().isEmpty()
         ) {
             if (request.getUsername().matches("\\d+")) {
-                account = accountRepository.findAccountBySdt(request.getUsername())
+                account = accountRepository.findAccountBySDT(request.getUsername())
                         .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_EXITED));
             } else {
                 account = accountRepository.findAccountByEmail(request.getUsername())

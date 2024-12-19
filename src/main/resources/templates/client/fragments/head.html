@@ -6,23 +6,52 @@
     <link rel="stylesheet" th:href="@{/client/css/home.css}">
     <script th:src="@{/client/js/general.js}"></script>
 
-    <!-- <th:block th:if="${currentPath.equals("/tour/list")}">
-        <link rel="stylesheet" th:href="@{/client/css/listTour.css}" th:if="${action == 'list' or action == 'search'}">
-        <link rel="stylesheet" th:href="@{/client/css/tour.css}" th:if="${action != 'list' and action != 'search'}">
-        <link rel="stylesheet" th:href="@{/client/css/tourDetail.css}" th:if="${action != 'list' and action != 'search'}">
-    </th:block> -->
+    <th:block th:if="${currentPath.contains('/tours/list')} or ${currentPath.contains('/tours/search')}">
+        <link rel="stylesheet" th:href="@{/client/css/listTour.css}">
+    </th:block>
 
-    <th:block th:if="${currentPath.equals('/hotels') or currentPath.equals('/hotels/detail')}">
+    <th:block th:if="${currentPath.equals('/tours')} or ${currentPath.contains('/tours/detail')}">
+        <link rel="stylesheet" th:href="@{/client/css/tour.css}">
+        <link rel="stylesheet" th:href="@{/client/css/tourDetail.css}">
+    </th:block>
+
+    <th:block th:if="${currentPath.equals('/hotels/index') or currentPath.equals('/hotels/detail')}">
         <link rel="stylesheet" th:href="@{/client/css/hotel.css}">
         <link rel="stylesheet" th:href="@{/client/css/hotelDetail.css}">
     </th:block>
 
-    <th:block th:if="${currentPath.equals('/news') or currentPath.equals('/news/detail')}">
+    <th:block th:if="${currentPath.equals('/news/index') or currentPath.equals('/news/detail')}">
         <link rel="stylesheet" th:href="@{/client/css/news.css}">
         <link rel="stylesheet" th:href="@{/client/css/newsDetail.css}">
     </th:block>
 
     <th:block th:if="${currentPath.equals('') or currentPath.equals('/')}">
         <script th:src="@{/client/js/home.js}"></script>
+    </th:block>
+
+    <th:block th:if="${currentPath.contains('/guides')}">
+        <link rel="stylesheet" th:href="@{/client/css/guide.css}">
+        <link rel="stylesheet" th:href="@{/client/css/guideDetail.css}">
+        <script th:src="@{/client/js/reviews.js}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </th:block>
+
+    <th:block th:if="${currentPath.equals('/calendars/booking')}">
+        <link rel="stylesheet" th:href="@{/client/css/calendarContent.css}">
+        <script th:src="@{/client/js/appointment.js}"></script>
+    </th:block>
+
+    <th:block th:if="${currentPath.equals('/calendars/index')}">
+        <link rel="stylesheet" th:href="@{/client/css/calendar.css}">
+        <script th:src="@{/client/js/calendar.js}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </th:block>
+
+    <th:block th:if="${currentPath.equals('/calendars/result')}">
+        <script th:src="@{/client/js/message.js}"></script>
+    </th:block>  
+  
+    <th:block th:if="${currentPath.equals('/users/infor')}">
+        <link rel="stylesheet" th:href="@{/client/css/user.css}">
     </th:block>
 </head>

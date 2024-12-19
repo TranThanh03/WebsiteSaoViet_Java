@@ -3,17 +3,17 @@ package com.websitesaoviet.WebsiteSaoViet.controller;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AuthenticationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.ApiResponse;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.AuthenticationResponse;
-import com.websitesaoviet.WebsiteSaoViet.exception.ErrorCode;
 import com.websitesaoviet.WebsiteSaoViet.service.AuthenticationService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -31,5 +31,10 @@ public class AuthenticationController {
                         .authenticated(result)
                         .build())
                 .build();
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "client/home/index";
     }
 }

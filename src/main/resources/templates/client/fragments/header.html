@@ -14,17 +14,29 @@
         </div>
         <div class="content-right">
             <div class="icon-calendar">
-                <a th:href="@{/calendar}">
+                <a th:href="@{/calendars/index}">
                     <img th:src="@{/client/icons/clock-regular.svg}" alt="icon">
                     <p>Lịch đặt</p>
                     <span id="notification-calendar">.</span>
                 </a>
             </div>
             <div class="icon-account">
-                <a th:href="@{/login}">
-                    <img th:src="@{/client/icons/user-regular.svg}" alt="icon">
-                    <p>Đăng nhập</p>
-                </a>
+                <div th:if="${username == null}">
+                    <a th:href="@{/auth/login}">
+                        <img th:src="@{/client/icons/user-regular.svg}" alt="icon">
+                        <p>Đăng nhập</p>
+                    </a>
+                </div>
+                <div th:if="${username != null}">
+                    <div class="account-info">
+                        <img th:src="@{/client/icons/user-regular.svg}" alt="icon">
+                        <p th:text="${fullNameUser}"></p>
+                        <ul id="slidebar">
+                            <li><a th:href="@{/users/infor}">Thông tin khách hàng</a></li>
+                            <li><a th:href="@{/auth/logout}" style="color: red;">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -33,9 +45,9 @@
         <ul class="menu">
             <li><a th:href="@{/}">🏠Trang chủ</a></li>
             <li><a th:href="@{/tours}">✈️Tours</a></li>
-            <li><a th:href="@{/guides}">🧑‍💼Hướng dẫn viên</a></li>
-            <li><a th:href="@{/hotels}">🏩Khách sạn</a></li>
-            <li><a th:href="@{/news}">📰Tin tức</a></li>
+            <li><a th:href="@{/guides/index}">🧑‍💼Hướng dẫn viên</a></li>
+            <li><a th:href="@{/hotels/index}">🏩Khách sạn</a></li>
+            <li><a th:href="@{/news/index}">📰Tin tức</a></li>
         </ul>
     </nav>
 </header>

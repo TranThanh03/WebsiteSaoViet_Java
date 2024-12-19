@@ -32,6 +32,9 @@ public class Guide {
     @Column(name = "ngay_sinh")
     LocalDate NgaySinh;
 
+    @Transient
+    int Tuoi;
+
     @Column(name = "sdt")
     String SDT;
 

@@ -7,6 +7,8 @@ import com.websitesaoviet.WebsiteSaoViet.repository.TourRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,5 +59,15 @@ public class TourService {
 
     public void deleteTour(String id) {
         tourRepository.deleteById(id);
+    }
+
+    public List<Tour> getTourLatest() {
+        Pageable pageable = PageRequest.of(0, 12);
+
+        return tourRepository.findToursLatest(pageable);
+    }
+
+    public List<Tour> getToursByTopic(int id) {
+        return tourRepository.findToursByTopic(id);
     }
 }

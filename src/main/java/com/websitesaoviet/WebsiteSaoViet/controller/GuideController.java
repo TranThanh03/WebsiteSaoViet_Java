@@ -4,15 +4,20 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.GuideUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Guide;
 import com.websitesaoviet.WebsiteSaoViet.service.GuideService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/guides")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -24,14 +29,32 @@ public class GuideController {
         return guideService.createGuide(request);
     }
 
-    @GetMapping()
-    List<Guide> getGuides() {
-        return guideService.getGuides();
+    @GetMapping("/index")
+    public String getGuides(HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        List<Guide> guides = guideService.getGuides();
+        model.addAttribute("guides", guides);
+        guides.forEach(guide -> {
+            LocalDate birthDate = guide.getNgaySinh();
+            int age = Period.between(birthDate, LocalDate.now()).getYears();
+            guide.setTuoi(age);
+        });
+
+        return "client/guide/index";
     }
 
-    @GetMapping("/{id}")
-    Guide getGuideById(@PathVariable String id) {
-        return guideService.getGuideById(id);
+    @GetMapping("/detail/{id}")
+    public String getGuideById(@PathVariable String id, HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        Guide guide = guideService.getGuideById(id);
+        model.addAttribute("guide", guide);
+        LocalDate birthDate = guide.getNgaySinh();
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
+        guide.setTuoi(age);
+
+        return "client/guide/detail";
     }
 
     @PutMapping("/{id}")

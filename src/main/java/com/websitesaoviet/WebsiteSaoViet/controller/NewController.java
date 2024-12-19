@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/news")
 public class NewController {
 
-    @GetMapping()
+    @GetMapping("/index")
     public String index(HttpServletRequest request, Model model) {
         model.addAttribute("currentPath", request.getRequestURI());
 

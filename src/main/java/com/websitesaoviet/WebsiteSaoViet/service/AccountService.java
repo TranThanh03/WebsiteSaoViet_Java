@@ -25,7 +25,7 @@ public class AccountService {
     AccountMapper accountMapper;
 
     public Account createAccount(AccountCreationRequest request) {
-        if(accountRepository.existsAccountBySdt(request.getSDT())) {
+        if(accountRepository.existsAccountBySDT(request.getSDT())) {
             throw new AppException(ErrorCode.PHONENUMBER_EXISTED);
         }
         else if (accountRepository.existsAccountByEmail(request.getEmail())) {
@@ -36,7 +36,6 @@ public class AccountService {
 
         account.setMatKhau(passwordEncoder.encode(request.getMatKhau()));
         account.setQuyen("user");
-        account.setSdt(request.getSDT());
 
         return accountRepository.save(account);
     }
@@ -54,7 +53,7 @@ public class AccountService {
         Account account = accountRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tài khoản không hợp lệ!"));
 
-        account.setSdt(request.getSDT());
+        account.setSDT(request.getSDT());
         account.setEmail(request.getEmail());
 
         if(request.getMatKhau() != null && !request.getMatKhau().isEmpty()) {

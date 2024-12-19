@@ -62,4 +62,8 @@ public class GuideService {
     public void deleteGuide(String id) {
         guideRepository.deleteById(id);
     }
+
+    public List<Guide> getGuidesByEvaluate(int danhGia) {
+        return guideRepository.findByDanhGia(danhGia);
+    }
 }

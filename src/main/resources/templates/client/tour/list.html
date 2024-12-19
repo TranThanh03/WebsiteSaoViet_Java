@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="client/fragments/head::head"></head>
+<head th:replace="client/fragments/head :: head"></head>
 <body>
-    <div th:replace="client/fragments/header::header"></div>    
-    <?php if(!empty($tours)):?>
-        <div class="tour-detail">
-            <h1>Danh sách các Tour</h1>
-            <h3>Khám phá các tour cùng Sao Việt hấp dẫn với nhiều địa điểm du lịch tuyệt vời</h3>
-            
-            <div class="tour-list">
-                <?php foreach($tours as $value):?>
-                    <div class="tour-item">
-                        <img src="./Admin/public/img/tour/<?=$value->AnhTour?>" alt="anh">
-                        <div class="tour-info">
-                            <h2><?=$value->TenTour?></h2>
-                            <p><?=$value->GioiThieu?></p>
-                            <p id="cost"><strong>Giá:</strong> <?=$value->GiaTour?> VND</p>
-                            <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>" class="btn-detail">Xem chi tiết</a>
-                        </div>
-                    </div>
-                <?php endforeach;?>
+    <div th:replace="client/fragments/header :: header"></div>
+
+    <div th:if="${tours != null and !tours.isEmpty()}" class="tour-detail">
+        <h1>Danh sách các Tour</h1>
+        <h3>Khám phá các tour cùng Sao Việt hấp dẫn với nhiều địa điểm du lịch tuyệt vời</h3>
+        <div class="tour-list">
+            <div th:each="tour : ${tours}" class="tour-item">
+                <img th:src="@{/admin/img/tour/{image}(image=${tour.getAnhTour()})}" alt="Tour Image">
+                <div class="tour-info">
+                    <h2 th:text="${tour.getTenTour()}"></h2>
+                    <p th:text="${tour.getGioiThieu()}"></p>
+                    <p id="cost"><strong>Giá:</strong> <span th:text="${tour.getGiaTour()} + ' VND'"></span></p>
+                    <a th:href="@{/tours/detail/{id}(id=${tour.getMaTour()})}" class="btn-detail">Xem chi tiết</a>
+                </div>
             </div>
         </div>
-    <?php else: ?>
-        <div style="width: 100%; height: 650px;">
-            <h2>Không tìm được Tour phù hợp!</h2>
-        </div>
-    <?php endif; ?>
-    
-    <footer th:replace="client/fragments/footer::footer"></footer>
+    </div>
+
+    <div th:if="${tours == null or tours.isEmpty()}" style="width: 100%; height: 650px;">
+        <h2>Không tìm được Tour phù hợp!</h2>
+    </div>
+
+    <footer th:replace="client/fragments/footer :: footer"></footer>
 </body>
 </html>

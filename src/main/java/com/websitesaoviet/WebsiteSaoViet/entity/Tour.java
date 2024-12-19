@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "tour")
 
@@ -35,4 +37,7 @@ public class Tour {
 
     @Column(name = "gia_tour")
     String GiaTour;
+
+    @Column(name = "ngay_tao")
+    LocalDate NgayTao;
 }

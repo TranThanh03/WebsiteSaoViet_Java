@@ -20,10 +20,10 @@ public class Account {
     String MaTK;
 
     @Column(name = "sdt", unique = true)
-    String sdt;
+    String SDT;
 
     @Column(name = "email", unique = true)
-    String email;
+    String Email;
 
     @Column(name = "mat_khau")
     String MatKhau;

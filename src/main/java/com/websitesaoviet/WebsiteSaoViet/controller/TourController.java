@@ -4,15 +4,18 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
 import com.websitesaoviet.WebsiteSaoViet.service.TourService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/tours")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -24,14 +27,51 @@ public class TourController {
         return tourService.createTour(request);
     }
 
-    @GetMapping()
-    List<Tour> getTours() {
-        return tourService.getTours();
+    @GetMapping("")
+    public String getTours(HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        return "client/tour/index";
     }
 
-    @GetMapping("/{id}")
-    Tour getTourById(@PathVariable String id) {
-        return tourService.getTourById(id);
+    @GetMapping("/index")
+    public String getListTours(HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        List<Tour> tours = tourService.getTours();
+        model.addAttribute("tours", tours);
+
+        return "client/tour/list";
+    }
+
+    @GetMapping("/list/{id}")
+    public String getListToursByTopic(@PathVariable int id, HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        List<Tour> tours = tourService.getToursByTopic(id);
+        model.addAttribute("tours", tours);
+
+        return "client/tour/list";
+    }
+
+    @GetMapping("/manage/index")
+    public String getListToursManagement(HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        List<Tour> tours = tourService.getTours();
+        model.addAttribute("tours", tours);
+
+        return "admin/tour/index";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String getTourById(@PathVariable String id, HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        Tour tour = tourService.getTourById(id);
+        model.addAttribute("tour", tour);
+
+        return "client/tour/detail";
     }
 
     @PutMapping("/{id}")
