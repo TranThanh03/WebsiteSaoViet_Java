@@ -1,0 +1,43 @@
+<header th:fragment="header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="/admin/img/logo.jpg" alt="logo">
+            <p>Sao Việt</p>
+        </div>
+        <div class="search">
+            <div class="sub-search">
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="icon-account">
+                <a href="/auth/logout">
+                    <img src="/admin/icons/user-regular.svg" alt="icon"></i>
+                    <p>Đăng xuất</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="/manage/index">Trang chủ</a></li>
+            <li><a href="/manage/users">Khách hàng</a></li>
+            <li><a href="/manage/tours">Tours</a></li>
+            <li><a href="/manage/guides">Hướng dẫn viên</a></li>
+            <li><a href="/manage/tasks">Phân công</a></li>
+            <li><a href="/manage/calendars">Đơn đặt</a></li>
+        </ul>
+    </nav>
+
+    <div class="notifi">
+        <div class="title">
+            <input type="hidden" id="code" value="<?=$_REQUEST['code'] ?? ''?>">
+            <input type="hidden" id="code2" value="<?=$_REQUEST['code2'] ?? ''?>">
+            <p id="message"><?=$_REQUEST['message'] ?? ''?></p>
+        </div>
+        <div class="content">
+            <p id="countdown"></p>
+        </div>
+    </div>
+</header>
+

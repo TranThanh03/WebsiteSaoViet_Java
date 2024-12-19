@@ -1,0 +1,494 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    z-index: -1;
+    overflow-x: hidden;
+}
+
+header {
+    height: 275px;
+    background: url("../img/background.jpg") no-repeat;
+    background-size: cover;
+}
+
+.header-container {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+
+header .logo {
+    padding: 28px 0;
+    width: 180px;
+}
+
+header .logo img {
+    width: 70px;
+    border-radius: 50%;
+    margin-left: 20%;
+}
+
+header .logo p {
+    color: #ffc10e;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+header .sub-search {
+    position: relative;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff00;
+}
+
+header .search input {
+    font-size: 18px;
+    width: 350px;
+    height: 43px;
+    padding: 6px 5px 11px 18px;
+    border-radius: 30px 0 0 30px;
+    border: 1px solid rgb(209, 209, 209);
+    outline: none;
+    border-right: none;
+    float: left;
+}
+
+header .search button {
+    width: 50px;
+    height: 43px;
+    padding: 10px 15px 6px 10px;
+    background-color: white;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 0 30px 30px 0;
+    border-left: none;
+    cursor: pointer;
+}
+
+header .search img {
+    width: 17px;
+}
+
+header .content-right {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .icon-calendar {
+    text-align: center;
+    padding: 45px 25px 0 0;
+    color: white;
+    font-weight: 500;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+header .icon-account {
+    text-align: center;
+    padding: 45px 0;
+}
+
+header .icon-account p {
+    color: white;
+}
+
+header .icon-account .account-info {
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+header .account-info:hover > #slidebar {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+header .icon-account #slidebar {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 5px 4px 6px rgb(146 146 150);
+    list-style: none;
+    padding: 15px 0;
+    z-index: 10;
+    width: 200px;
+}
+
+header .icon-account #slidebar li{
+    margin-bottom: 10px;
+}
+
+header .icon-account #slidebar li:hover a {
+    font-weight: bold;
+}
+
+
+header .icon-account #slidebar a {
+    text-decoration: none;
+    font-weight: 500;
+    color: black;
+}
+
+header .icon-calendar img {
+    width: 28px;
+    cursor: pointer;
+}
+
+header .icon-account img {
+    width: 25px;
+}
+
+nav {
+    height: 80px;
+}
+
+nav .menu {
+    width: 800px;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 0;
+    padding: 0;
+}
+
+nav .menu li {
+    text-align: center;
+    margin: 0 5px;
+}
+
+nav .menu a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1px 10px 3px 10px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.space {
+    height: 160px;
+    margin-bottom: 280px;
+}
+
+.slide {
+    position: absolute;
+    overflow: hidden;
+    width: 1000px;
+    height: 450px;
+    margin: 0 auto;
+    border-radius: 30px;
+    top: 220px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1;
+}
+
+.slide .sub-slide {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide .hide-slide {
+    display: flex;
+    transition: transform 0 ease;
+}
+
+.slide .item {
+    flex: 0 0 100%;
+}
+
+.slide .item img {
+    width: 1000px;
+    height: auto;
+}
+
+.slide .control-prev,
+.slide .control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(78, 77, 77, 0.5);
+    color: white;
+    border: none;
+    padding: 5px 5px 10px 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.slide .control-prev {
+    left: 0;
+}
+
+.slide .control-next {
+    right: 0;
+}
+
+.list {
+    position: relative;
+    height: 450px;
+    padding: 20px 189px;
+    width: auto;
+    overflow: hidden;
+}
+
+.title {
+    color: black;
+    font-size: 30px;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.title a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: #45c3d2;
+    float: right;
+    padding: 5px 10px;
+    border-radius: 25px;
+}
+
+.list .content {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    transition: all 0.5s ease;
+}
+
+.list .sub-list {
+    margin: 10px;
+    padding: 50px 10px;
+    border-radius: 15px;
+    height: 190px;
+    text-align: center;
+    background-color: rgb(246, 246, 246);
+    height: auto;
+}
+
+.sub-list img {
+    width: 320px;
+    height: 160px;
+    margin-bottom: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.content a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.sub-list h4 {
+    width: 315px;
+    margin-bottom: 5px;
+}
+
+.container {
+    width: 1095px;
+    overflow: hidden;
+}
+
+.button-prev,
+.button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(223, 222, 222, 0.5);
+    color: black;
+    border: none;
+    padding: 5px 5px 10px 5px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgb(150, 149, 149);
+    font-weight: 500;
+}
+.button-prev {
+    left: 160px;
+    display: none;
+}
+
+.button-next {
+    right: 200px;
+}
+
+.button-next:active,
+.button-prev:active {
+    background-color: #45c3d2;
+    color: white;
+}
+
+#guide-slide {
+    height: 475px;
+}
+
+#guide {
+    gap: 25px;
+}
+
+.list #sub-guide {
+    padding: 20px;
+    height: 320px;
+}
+
+#sub-guide img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#sub-guide #guide-name {
+    margin: 10px 0 6px 0;
+}
+
+#sub-guide span {
+    font-size: 20px;
+}
+
+footer {
+    margin-top: 30px;
+    height: 255px;
+    background-color: #eeeded;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    padding-top: 25px;
+    justify-content: space-evenly;
+    gap: 160px;
+}
+
+footer .infor {
+    width: 300px;
+}
+
+footer h4 {
+    font-size: 17px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+footer p {
+    font-size: 15px;
+}
+
+footer .infor span {
+    float: left;
+    padding-right: 10px;
+    width: 25px;
+}
+
+footer .infor p {
+    display: block;
+    padding-bottom: 10px;
+}
+
+footer .policy {
+    width: 325px;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+footer .policy img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+footer .policy span {
+    font-weight: bold;
+    position: relative;
+    top: -12px;
+    right: -5px;
+    color: #ffc10e;
+}
+
+footer .policy p {
+    margin-top: 5px;
+}
+
+footer .policy a {
+    text-decoration: none;
+    color: #34b7c6;
+}
+
+footer .contact p {
+    padding-bottom: 15px;
+}
+
+footer .contact a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+footer .contact img {
+    width: 18px;
+    margin-right: 10px;
+}
+
+footer .end {
+    margin-top: 200px;
+    position: absolute;
+    height: 10px;
+    padding-left: 100px;
+}
+
+footer .end hr {
+    width: 1480px;
+}
+
+footer .end span {
+    font-size: 11px;
+}
+
+.icon-calendar #notification-calendar {
+    display: none;
+    color: red;
+    border-radius: 50%;
+    position: relative;
+    top: -112px;
+    left: 15px;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+.icon-calendar a {
+    text-decoration: none;
+}
+
+.icon-calendar p {
+    color: white;
+}
+
+.active {
+    background-color: #45C3D2;
+    border-radius: 20px;
+    padding: 2px 5px 5px 5px;
+}
+
+.content #tour-price {
+    color: red;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="client/fragments/head::head"></head>
+<body>
+    <div th:replace="client/fragments/header::header"></div>
+    <div class="space"></div>
+    <!-- Slider -->
+    <div class="slide">
+        <div class="sub-slide">
+            <div class="item">
+                <img th:src="@{/client/img/home/slide_1.jpg}" alt="slide_1">
+            </div>
+            <div class="item">
+                <img th:src="@{/client/img/home/slide_2.jpg}" alt="slide_2">
+            </div>
+            <div class="item">
+                <img th:src="@{/client/img/home/slide_3.jpg}" alt="slide_3">
+            </div>
+            <div class="item">
+                <img th:src="@{/client/img/home/slide_4.jpg}" alt="slide_4">
+            </div>
+            <div class="item">
+                <img th:src="@{/client/img/home/slide_5.jpg}" alt="slide_5">
+            </div>
+        </div>
+        <button class="control-prev" type="button">
+            <span>&lt;</span>
+        </button>
+        <button class="control-next" type="button">
+            <span>&gt;</span>
+        </button>
+    </div>
+
+    <!-- List Tour -->
+    <div class="list" id="tour-slide">
+        <div class="title">
+            <span>Tours mới nhất</span>
+            <a href="/tours">
+                <span>Xem thêm</span>
+            </a>
+        </div>
+        <div class="container">
+            <div class="content" id="tour">
+                <div th:each="tour : ${tours}">
+                    <a th:href="@{/tours/{id}(id=${tour.id})}">
+                        <div class="sub-list" id="sub-tour">
+                            <img th:src="@{/admin/img/tour/{image}(image=${tour.image})}" alt="anh tour" id="avatar-tour">
+                            <h4 id="tour-name" th:text="${tour.name}"></h4>
+                            <span id="tour-price" th:text="${tour.price} + ' VND'"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <button class="button-prev" type="button" id="tour-prev">
+                <span>&lt;</span>
+            </button>
+            <button class="button-next" type="button" id="tour-next">
+                <span>&gt;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- List Guide -->
+    <div class="list" id="guide-slide">
+        <div class="title">
+            <span>Hướng dẫn viên nổi bật</span>
+            <a href="/guides">
+                <span>Xem thêm</span>
+            </a>
+        </div>
+        <div class="container">
+            <div class="content" id="guide">
+                <div th:each="guide : ${guides}">
+                    <a th:href="@{/guides/{id}(id=${guide.id})}">
+                        <div class="sub-list" id="sub-guide">
+                            <img th:src="@{/admin/img/guide/{image}(image=${guide.image})}" alt="anh hdv" id="avatar-guide">
+                            <h4 id="guide-name" th:text="${guide.name}"></h4>
+                            <span id="guide-age" th:text="${guide.age} + ' tuổi'"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <button class="button-prev" type="button" id="gui-prev">
+                <span>&lt;</span>
+            </button>
+            <button class="button-next" type="button" id="gui-next">
+                <span>&gt;</span>
+            </button>
+        </div>
+    </div>
+    
+    <footer th:replace="client/fragments/footer::footer"></footer>
+</body>
+</html>

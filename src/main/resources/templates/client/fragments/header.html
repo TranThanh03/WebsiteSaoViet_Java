@@ -1,0 +1,41 @@
+<header th:fragment="header">
+    <div class="header-container">
+        <div class="logo">
+            <img th:src="@{/client/img/logo.jpg}" alt="logo">
+            <p>Sao Việt</p>
+        </div>
+        <div class="search">
+            <div class="sub-search">
+                <form id="search_form" action="/tour" method="post">
+                    <input type="text" placeholder="Tìm kiếm Tours" name="search_tour">
+                    <button type="submit"><img th:src="@{/client/icons/search.svg}" alt="icon"></button>
+                </form>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="icon-calendar">
+                <a th:href="@{/calendar}">
+                    <img th:src="@{/client/icons/clock-regular.svg}" alt="icon">
+                    <p>Lịch đặt</p>
+                    <span id="notification-calendar">.</span>
+                </a>
+            </div>
+            <div class="icon-account">
+                <a th:href="@{/login}">
+                    <img th:src="@{/client/icons/user-regular.svg}" alt="icon">
+                    <p>Đăng nhập</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <ul class="menu">
+            <li><a th:href="@{/}">🏠Trang chủ</a></li>
+            <li><a th:href="@{/tours}">✈️Tours</a></li>
+            <li><a th:href="@{/guides}">🧑‍💼Hướng dẫn viên</a></li>
+            <li><a th:href="@{/hotels}">🏩Khách sạn</a></li>
+            <li><a th:href="@{/news}">📰Tin tức</a></li>
+        </ul>
+    </nav>
+</header>

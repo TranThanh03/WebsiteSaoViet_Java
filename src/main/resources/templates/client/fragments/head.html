@@ -1,0 +1,28 @@
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sao Việt - Vivu ba miền</title>
+    <link rel="icon" th:href="@{/client/img/logo.jpg}" type="image/jpg">
+    <link rel="stylesheet" th:href="@{/client/css/home.css}">
+    <script th:src="@{/client/js/general.js}"></script>
+
+    <!-- <th:block th:if="${currentPath.equals("/tour/list")}">
+        <link rel="stylesheet" th:href="@{/client/css/listTour.css}" th:if="${action == 'list' or action == 'search'}">
+        <link rel="stylesheet" th:href="@{/client/css/tour.css}" th:if="${action != 'list' and action != 'search'}">
+        <link rel="stylesheet" th:href="@{/client/css/tourDetail.css}" th:if="${action != 'list' and action != 'search'}">
+    </th:block> -->
+
+    <th:block th:if="${currentPath.equals('/hotels') or currentPath.equals('/hotels/detail')}">
+        <link rel="stylesheet" th:href="@{/client/css/hotel.css}">
+        <link rel="stylesheet" th:href="@{/client/css/hotelDetail.css}">
+    </th:block>
+
+    <th:block th:if="${currentPath.equals('/news') or currentPath.equals('/news/detail')}">
+        <link rel="stylesheet" th:href="@{/client/css/news.css}">
+        <link rel="stylesheet" th:href="@{/client/css/newsDetail.css}">
+    </th:block>
+
+    <th:block th:if="${currentPath.equals('') or currentPath.equals('/')}">
+        <script th:src="@{/client/js/home.js}"></script>
+    </th:block>
+</head>
