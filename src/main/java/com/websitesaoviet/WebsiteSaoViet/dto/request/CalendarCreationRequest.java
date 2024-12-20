@@ -12,18 +12,18 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CalendarCreationRequest {
-    String MaKH;
-    String TenKH;
-    String MaTour;
-    String TenTour;
-    String MaHDV;
-    String TenHDV;
-    String MaPC;
-    LocalDate NgayKH;
-    LocalDate NgayKT;
-    String GiaTour;
-    String GiaHDV;
-    String TongTien;
-    LocalDateTime ThoiGianDat;
-    String TrangThai;
+    String makh;
+    String tenkh;
+    String matour;
+    String tentour;
+    String mahdv;
+    String tenhdv;
+    String mapc;
+    LocalDate ngaykh;
+    LocalDate ngaykt;
+    String giatour;
+    String giahdv;
+    String tongtien;
+    LocalDateTime thoigiandat;
+    String trangthai;
 }

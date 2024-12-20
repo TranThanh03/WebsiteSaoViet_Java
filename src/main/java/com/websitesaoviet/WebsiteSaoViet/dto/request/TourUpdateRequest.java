@@ -9,10 +9,10 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TourUpdateRequest {
-    String TenTour;
-    String AnhTour;
-    String GioiThieu;
-    String MoTa;
-    int MaCD;
-    String GiaTour;
+    String tentour;
+    String anhtour;
+    String gioithieu;
+    String mota;
+    int macd;
+    String giatour;
 }

@@ -18,32 +18,32 @@ public class Guide {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "mahdv", unique = true)
-    String MaHDV;
+    String mahdv;
 
     @Column(name = "tenhdv")
-    String TenHDV;
+    String tenhdv;
 
     @Column(name = "anhhdv")
-    String AnhHDV;
+    String anhhdv;
 
     @Column(name = "gioi_tinh")
-    String GioiTinh;
+    String gioitinh;
 
     @Column(name = "ngay_sinh")
-    LocalDate NgaySinh;
+    LocalDate ngaysinh;
 
     @Transient
-    int Tuoi;
+    int tuoi;
 
     @Column(name = "sdt")
-    String SDT;
+    String sdt;
 
     @Column(name = "email")
-    String Email;
+    String email;
 
     @Column(name = "mo_ta")
-    String MoTa;
+    String mota;
 
     @Column(name = "danh_gia")
-    int DanhGia;
+    int danhgia;
 }

@@ -22,12 +22,12 @@ public class TourService {
     public Tour createTour(TourCreationRequest request) {
         Tour tour = new Tour();
 
-        tour.setTenTour(request.getTenTour());
-        tour.setAnhTour(request.getAnhTour());
-        tour.setGioiThieu(request.getGioiThieu());
-        tour.setMoTa(request.getMoTa());
-        tour.setMaCD(request.getMaCD());
-        tour.setGiaTour(request.getGiaTour());
+//        tour.setTenTour(request.getTenTour());
+//        tour.setAnhTour(request.getAnhTour());
+//        tour.setGioiThieu(request.getGioiThieu());
+//        tour.setMoTa(request.getMoTa());
+//        tour.setMaCD(request.getMaCD());
+//        tour.setGiaTour(request.getGiaTour());
 
         return tourRepository.save(tour);
     }
@@ -44,15 +44,15 @@ public class TourService {
     public Tour updateTour(String id, TourUpdateRequest request) {
         Tour tour = getTourById(id);
 
-        tour.setTenTour(request.getTenTour());
-        tour.setGioiThieu(request.getGioiThieu());
-        tour.setMoTa(request.getMoTa());
-        tour.setMaCD(request.getMaCD());
-        tour.setGiaTour(request.getGiaTour());
-
-        if(request.getAnhTour() != null && !request.getAnhTour().isEmpty()) {
-            tour.setAnhTour(request.getAnhTour());
-        }
+//        tour.setTenTour(request.getTenTour());
+//        tour.setGioiThieu(request.getGioiThieu());
+//        tour.setMoTa(request.getMoTa());
+//        tour.setMaCD(request.getMaCD());
+//        tour.setGiaTour(request.getGiaTour());
+//
+//        if(request.getAnhTour() != null && !request.getAnhTour().isEmpty()) {
+//            tour.setAnhTour(request.getAnhTour());
+//        }
 
         return tourRepository.save(tour);
     }

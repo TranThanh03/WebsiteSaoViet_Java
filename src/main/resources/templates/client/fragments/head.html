@@ -6,7 +6,8 @@
     <link rel="stylesheet" th:href="@{/client/css/home.css}">
     <script th:src="@{/client/js/general.js}"></script>
 
-    <th:block th:if="${currentPath.contains('/tours/list')} or ${currentPath.contains('/tours/search')}">
+    <th:block th:if="${currentPath.contains('/tours/list')} or ${currentPath.contains('/tours/search')}
+                        or ${currentPath.equals('/tours/index')}">
         <link rel="stylesheet" th:href="@{/client/css/listTour.css}">
     </th:block>
 
@@ -29,7 +30,7 @@
         <script th:src="@{/client/js/home.js}"></script>
     </th:block>
 
-    <th:block th:if="${currentPath.contains('/guides')}">
+    <th:block th:if="${currentPath.contains('/guides') or currentPath.contains('/tasks/list')}">
         <link rel="stylesheet" th:href="@{/client/css/guide.css}">
         <link rel="stylesheet" th:href="@{/client/css/guideDetail.css}">
         <script th:src="@{/client/js/reviews.js}"></script>

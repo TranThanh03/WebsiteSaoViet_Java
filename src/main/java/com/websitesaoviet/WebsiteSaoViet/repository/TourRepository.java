@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface TourRepository extends JpaRepository<Tour, String> {
-    @Query("SELECT t FROM Tour t ORDER BY t.NgayTao DESC")
+    @Query("SELECT t FROM Tour t ORDER BY t.ngaytao DESC")
     List<Tour> findToursLatest(Pageable pageable);
 
-    @Query("SELECT t FROM Tour t WHERE t.MaCD = :maCD")
+    @Query("SELECT t FROM Tour t WHERE t.macd = :maCD")
     List<Tour> findToursByTopic(@Param("maCD")int id);
 }

@@ -11,12 +11,12 @@ import java.time.LocalDate;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GuideUpdateRequest {
-    String TenHDV;
-    String AnhHDV;
-    String GioiTinh;
-    LocalDate NgaySinh;
-    String SDT;
-    String Email;
-    String MoTa;
-    int DanhGia;
+    String tenhdv;
+    String anhhdv;
+    String gioitinh;
+    LocalDate ngaysinh;
+    String sdt;
+    String mmail;
+    String mota;
+    int danhgia;
 }

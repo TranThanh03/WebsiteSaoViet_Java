@@ -18,26 +18,26 @@ public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "ma_tour", unique = true)
-    String MaTour;
+    String matour;
 
     @Column(name = "ten_tour")
-    String TenTour;
+    String tentour;
 
     @Column(name = "anh_tour")
-    String AnhTour;
+    String anhtour;
 
     @Column(name = "gioi_thieu")
-    String GioiThieu;
+    String gioithieu;
 
     @Column(name = "mo_ta")
-    String MoTa;
+    String mota;
 
     @Column(name = "macd")
-    int MaCD;
+    int macd;
 
     @Column(name = "gia_tour")
-    String GiaTour;
+    String giatour;
 
     @Column(name = "ngay_tao")
-    LocalDate NgayTao;
+    LocalDate ngaytao;
 }

@@ -1,6 +1,7 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskTourGuideRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TaskUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Task;
 import com.websitesaoviet.WebsiteSaoViet.repository.TaskRepository;
@@ -20,11 +21,11 @@ public class TaskService {
     public Task createTask(TaskCreationRequest request) {
         Task task = new Task();
 
-        task.setMaTour(request.getMaTour());
-        task.setMaHDV(request.getMaHDV());
-        task.setGiaHDV(request.getGiaHDV());
-        task.setNgayKH(request.getNgayKH());
-        task.setNgayKT(request.getNgayKT());
+//        task.setMaTour(request.getMaTour());
+//        task.setMaHDV(request.getMaHDV());
+//        task.setGiaHDV(request.getGiaHDV());
+//        task.setNgayKH(request.getNgayKH());
+//        task.setNgayKT(request.getNgayKT());
 
         return taskRepository.save(task);
     }
@@ -33,15 +34,23 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task getTaskById(String id) {
-        return taskRepository.findById(id)
+    public Task getTaskById(int id) {
+        return taskRepository.findById(String.valueOf(id))
                 .orElseThrow(() -> new RuntimeException("Lịch phân công không hợp lệ!"));
     }
 
-    public Task updateTask(String id, TaskUpdateRequest request) {
+    public TaskTourGuideRequest findTaskById(int id) {
+        return taskRepository.findTaskById(id);
+    }
+
+    public List<TaskTourGuideRequest> findGuidesByTourId(String id) {
+        return taskRepository.findGuidesByTourId(id);
+    }
+
+    public Task updateTask(int id, TaskUpdateRequest request) {
         Task task = getTaskById(id);
 
-        task.setTrangThai(request.getTrangThai());
+//        task.setTrangThai(request.getTrangThai());
 
         return taskRepository.save(task);
     }

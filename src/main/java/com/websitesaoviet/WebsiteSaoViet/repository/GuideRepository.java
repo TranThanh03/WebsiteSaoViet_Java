@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface GuideRepository extends JpaRepository<Guide, String> {
-    @Query("SELECT g FROM Guide g WHERE g.DanhGia = :danhGia")
+    @Query("SELECT g FROM Guide g WHERE g.danhgia = :danhGia")
     List<Guide> findByDanhGia(@Param("danhGia")int danhGia);
 }

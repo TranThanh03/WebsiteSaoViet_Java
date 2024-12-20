@@ -34,7 +34,7 @@ public class HomeController {
 
         List<Guide> guides = guideService.getGuidesByEvaluate(5);
         guides.forEach(guide -> {
-            LocalDate birthDate = guide.getNgaySinh();
+            LocalDate birthDate = guide.getNgaysinh();
             int age = Period.between(birthDate, LocalDate.now()).getYears();
             guide.setTuoi(age);
         });

@@ -14,7 +14,7 @@
                 <span id="introduce" th:text="${tour.getGioiThieu()}"></span>
                 <h2 id="price-tour">Giá Tour:</h2>
                 <p id="price" th:text="${tour.getGiaTour()} + ' VND'"></p>
-                <a th:href="@{/guides/list/id=${tour.getMaTour()}}">
+                <a th:href="@{/tasks/list/{id}(id=${tour.getMaTour()})}">
                     <button class="book-now">Đặt ngay</button>
                 </a>
             </div>

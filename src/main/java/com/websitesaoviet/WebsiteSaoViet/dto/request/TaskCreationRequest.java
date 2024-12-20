@@ -11,10 +11,10 @@ import java.time.LocalDate;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TaskCreationRequest {
-    String MaTour;
-    String MaHDV;
-    String GiaHDV;
-    LocalDate NgayKH;
-    LocalDate NgayKT;
-    String TrangThai;
+    String matour;
+    String mahdv;
+    String giahdv;
+    LocalDate ngaykh;
+    LocalDate ngaykt;
+    String trangthai;
 }

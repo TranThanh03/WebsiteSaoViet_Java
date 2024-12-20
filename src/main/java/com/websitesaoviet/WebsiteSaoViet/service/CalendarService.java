@@ -22,20 +22,20 @@ public class CalendarService {
         Calendar calendar = new Calendar();
         LocalDateTime currentTime = LocalDateTime.now();
 
-        calendar.setMaKH(request.getMaKH());
-        calendar.setTenKH(request.getTenKH());
-        calendar.setMaTour(request.getMaTour());
-        calendar.setTenTour(request.getTenTour());
-        calendar.setMaHDV(request.getMaHDV());
-        calendar.setTenHDV(request.getTenHDV());
-        calendar.setMaPC(request.getMaPC());
-        calendar.setNgayKH(request.getNgayKH());
-        calendar.setNgayKT(request.getNgayKT());
-        calendar.setGiaTour(request.getGiaTour());
-        calendar.setGiaHDV(request.getGiaHDV());
-        calendar.setTongTien(request.getTongTien());
-        calendar.setThoiGianDat(currentTime);
-        calendar.setTrangThai("Đang xử lý");
+//        calendar.setMaKH(request.getMaKH());
+//        calendar.setTenKH(request.getTenKH());
+//        calendar.setMaTour(request.getMaTour());
+//        calendar.setTenTour(request.getTenTour());
+//        calendar.setMaHDV(request.getMaHDV());
+//        calendar.setTenHDV(request.getTenHDV());
+//        calendar.setMaPC(request.getMaPC());
+//        calendar.setNgayKH(request.getNgayKH());
+//        calendar.setNgayKT(request.getNgayKT());
+//        calendar.setGiaTour(request.getGiaTour());
+//        calendar.setGiaHDV(request.getGiaHDV());
+//        calendar.setTongTien(request.getTongTien());
+//        calendar.setThoiGianDat(currentTime);
+//        calendar.setTrangThai("Đang xử lý");
 
         return calendarRepository.save(calendar);
     }
@@ -52,7 +52,7 @@ public class CalendarService {
     public Calendar updateCalendar(String id, CalendarUpdateRequest request) {
         Calendar calendar = getCalendarById(id);
 
-        calendar.setTrangThai(request.getTrangThai());
+//        calendar.setTrangThai(request.getTrangThai());
 
         return calendarRepository.save(calendar);
     }

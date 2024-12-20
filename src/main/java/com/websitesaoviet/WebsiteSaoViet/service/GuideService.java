@@ -20,14 +20,14 @@ public class GuideService {
     public Guide createGuide(GuideCreationRequest request) {
         Guide guide = new Guide();
 
-        guide.setTenHDV(request.getTenHDV());
-        guide.setAnhHDV(request.getAnhHDV());
-        guide.setGioiTinh(request.getGioiTinh());
-        guide.setNgaySinh(request.getNgaySinh());
-        guide.setSDT(request.getSDT());
-        guide.setEmail(request.getEmail());
-        guide.setMoTa(request.getMoTa());
-        guide.setDanhGia(request.getDanhGia());
+//        guide.setTenHDV(request.getTenHDV());
+//        guide.setAnhHDV(request.getAnhHDV());
+//        guide.setGioiTinh(request.getGioiTinh());
+//        guide.setNgaySinh(request.getNgaySinh());
+//        guide.setSDT(request.getSDT());
+//        guide.setEmail(request.getEmail());
+//        guide.setMoTa(request.getMoTa());
+//        guide.setDanhGia(request.getDanhGia());
 
         return guideRepository.save(guide);
     }
@@ -44,17 +44,17 @@ public class GuideService {
     public Guide updateAccount(String id, GuideUpdateRequest request) {
         Guide guide = getGuideById(id);
 
-        guide.setTenHDV(request.getTenHDV());
-        guide.setGioiTinh(request.getGioiTinh());
-        guide.setNgaySinh(request.getNgaySinh());
-        guide.setSDT(request.getSDT());
-        guide.setEmail(request.getEmail());
-        guide.setMoTa(request.getMoTa());
-        guide.setDanhGia(request.getDanhGia());
-
-        if(request.getAnhHDV() != null && !request.getAnhHDV().isEmpty()) {
-            guide.setAnhHDV(request.getAnhHDV());
-        }
+//        guide.setTenHDV(request.getTenHDV());
+//        guide.setGioiTinh(request.getGioiTinh());
+//        guide.setNgaySinh(request.getNgaySinh());
+//        guide.setSDT(request.getSDT());
+//        guide.setEmail(request.getEmail());
+//        guide.setMoTa(request.getMoTa());
+//        guide.setDanhGia(request.getDanhGia());
+//
+//        if(request.getAnhHDV() != null && !request.getAnhHDV().isEmpty()) {
+//            guide.setAnhHDV(request.getAnhHDV());
+//        }
 
         return guideRepository.save(guide);
     }

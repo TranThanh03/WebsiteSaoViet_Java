@@ -19,47 +19,47 @@ public class Calendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "madd", unique = true)
-    int MaDD;
+    int madd;
 
     @Column(name = "makh")
-    String MaKH;
+    String makh;
 
     @Column(name = "tenkh")
-    String TenKH;
+    String tenkh;
 
     @Column(name = "ma_tour")
-    String MaTour;
+    String matour;
 
     @Column(name = "ten_tour")
-    String TenTour;
+    String tentour;
 
     @Column(name = "mahdv")
-    String MaHDV;
+    String mahdv;
 
     @Column(name = "tenhdv")
-    String TenHDV;
+    String tenhdv;
 
     @Column(name = "mapc")
-    String MaPC;
+    String mapc;
 
     @Column(name = "ngaykh")
-    LocalDate NgayKH;
+    LocalDate ngaykh;
 
     @Column(name = "ngaykt")
-    LocalDate NgayKT;
+    LocalDate ngaykt;
 
     @Column(name = "gia_tour")
-    String GiaTour;
+    String giatour;
 
     @Column(name = "giahdv")
-    String GiaHDV;
+    String giahdv;
 
     @Column(name = "tong_tien")
-    String TongTien;
+    String tongtien;
 
     @Column(name = "thoi_gian_dat")
-    LocalDateTime ThoiGianDat;
+    LocalDateTime thoigiandat;
 
     @Column(name = "trang_thai")
-    String TrangThai;
+    String trangthai;
 }

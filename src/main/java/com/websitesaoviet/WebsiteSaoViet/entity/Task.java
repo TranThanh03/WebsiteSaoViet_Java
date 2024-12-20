@@ -18,23 +18,23 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mapc", unique = true)
-    int MaPC;
+    int mapc;
 
     @Column(name = "ma_tour")
-    String MaTour;
+    String matour;
 
     @Column(name = "mahdv")
-    String MaHDV;
+    String mahdv;
 
     @Column(name = "giahdv")
-    String GiaHDV;
+    String giahdv;
 
     @Column(name = "ngaykh")
-    LocalDate NgayKH;
+    LocalDate ngaykh;
 
     @Column(name = "ngaykt")
-    LocalDate NgayKT;
+    LocalDate ngaykt;
 
     @Column(name = "trang_thai")
-    String TrangThai;
+    String trangthai;
 }

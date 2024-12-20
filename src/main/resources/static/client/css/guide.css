@@ -112,6 +112,7 @@ main h2 {
 }
 
 .guide-card button {
+    margin-bottom: 35px;
     width: 150px;
     padding: 5px 10px 10px 10px;
     border: none;

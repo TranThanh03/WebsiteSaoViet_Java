@@ -1,4 +1,8 @@
 package com.websitesaoviet.WebsiteSaoViet.mapper;
 
-public class AuthenticationMapper {
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface AuthenticationMapper {
+
 }

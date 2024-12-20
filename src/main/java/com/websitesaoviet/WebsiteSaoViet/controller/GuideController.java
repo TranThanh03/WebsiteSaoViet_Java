@@ -34,12 +34,12 @@ public class GuideController {
         model.addAttribute("currentPath", request.getRequestURI());
 
         List<Guide> guides = guideService.getGuides();
-        model.addAttribute("guides", guides);
         guides.forEach(guide -> {
-            LocalDate birthDate = guide.getNgaySinh();
+            LocalDate birthDate = guide.getNgaysinh();
             int age = Period.between(birthDate, LocalDate.now()).getYears();
             guide.setTuoi(age);
         });
+        model.addAttribute("guides", guides);
 
         return "client/guide/index";
     }
@@ -49,10 +49,10 @@ public class GuideController {
         model.addAttribute("currentPath", request.getRequestURI());
 
         Guide guide = guideService.getGuideById(id);
-        model.addAttribute("guide", guide);
-        LocalDate birthDate = guide.getNgaySinh();
+        LocalDate birthDate = guide.getNgaysinh();
         int age = Period.between(birthDate, LocalDate.now()).getYears();
         guide.setTuoi(age);
+        model.addAttribute("guide", guide);
 
         return "client/guide/detail";
     }
