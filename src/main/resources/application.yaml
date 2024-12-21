@@ -10,6 +10,14 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
+      file-size-threshold: 1KB
 
 jwt:
   signerKey: "Kd9MaZx0dCCR2lP0VtocThdOYZQLVauemhkc0LqeuNo7W+rt+WkJald+Pil7fb5T"
+
+file:
+  uploadTourDir: D:\Java\WebsiteSaoViet_Java\src\main\resources\static\admin\img\tour

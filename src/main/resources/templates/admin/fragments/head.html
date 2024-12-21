@@ -2,41 +2,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sao Việt - Vivu ba miền</title>
-    <link rel="icon" href="/admin/img/logo.jpg" type="image/jpg">
-    <link rel="stylesheet" href="/admin/css/home.css">
-    <link rel="stylesheet" href="/admin/css/notifi.css">        
-    <script src="/admin/js/onChangeAvatar.js"></script>
-    <script src="/admin/js/general.js"></script>
-    <script src="/admin/js/notifi.js"></script>
+    <link rel="icon" th:href="@{/admin/img/logo.jpg}" type="image/jpg">
+    <link rel="stylesheet" th:href="@{/admin/css/home.css}">
+    <link rel="stylesheet" th:href="@{/admin/css/notifi.css}">
+    <script th:src="@{/admin/js/onChangeAvatar.js}"></script>
+    <script th:src="@{/admin/js/general.js}"></script>
+    <script th:src="@{/admin/js/notifi.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!--ckeditor-->
     <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
-    <?php
-        if(isset($_REQUEST['controller'])) {
-            if($_REQUEST['controller'] === 'home') {
-                echo '<script>sessionStorage.setItem("navIndex", 0)</script>';
-            }
-            else if($_REQUEST['controller'] === 'calendar' && $_REQUEST['action'] === 'detail') {
-                echo '<link rel="stylesheet" href="/admin/css/calendar.css"/>';
-            }
-            else if($_REQUEST['controller'] === 'user' || $_REQUEST['controller'] === 'task') {
-                echo '<link rel="stylesheet" href="/admin/css/showFormInsert.css"/>';
-                echo '<script src="/admin/js/showFormInsert.js"></script>';
-            } 
-            else if($_REQUEST['controller'] === 'tour' && $_REQUEST['action'] === 'create') {
-                echo '<link rel="stylesheet" href="/admin/css/createTour.css"/>';
-            }
-            else if($_REQUEST['controller'] === 'tour' && $_REQUEST['action'] === 'showForm') {
-                echo '<link rel="stylesheet" href="/admin/css/updateTour.css"/>';
-            }
-            else if($_REQUEST['controller'] === 'guide' && $_REQUEST['action'] === 'create') {
-                echo '<link rel="stylesheet" href="/admin/css/createGuide.css"/>';
-            }
-            else if($_REQUEST['controller'] === 'guide' && $_REQUEST['action'] === 'showForm') {
-                echo '<link rel="stylesheet" href="/admin/css/updateGuide.css"/>';
-            }
-        }
-    ?>   
+    <th:block th:if="${currentPath != null and currentPath.equals('/manage/index')}">
+        <script>sessionStorage.setItem("navIndex", 0);</script>
+    </th:block>
+
+    <th:block th:if="${currentPath != null and currentPath.equals('/calendars/manage/detail')}">
+        <link rel="stylesheet" th:href="@{/admin/css/calendar.css}"/>
+    </th:block>
+
+    <th:block th:if="${currentPath != null and (currentPath.equals('/users/manage/index') or currentPath.equals('/tasks/manage/index'))}">
+        <link rel="stylesheet" th:href="@{/admin/css/showFormInsert.css}"/>
+        <script th:src="@{/admin/js/showFormInsert.js}"></script>
+    </th:block>
+
+    <th:block th:if="${currentPath != null and currentPath.equals('/tours/manage/create')}">
+        <link rel="stylesheet" th:href="@{/admin/css/createTour.css}"/>
+    </th:block>
+
+    <th:block th:if="${currentPath != null and currentPath.equals('/tours/manage/update')}">
+        <link rel="stylesheet" th:href="@{/admin/css/updateTour.css}"/>
+    </th:block>
+
+    <th:block th:if="${currentPath != null and currentPath.equals('/guides/manage/create')}">
+        <link rel="stylesheet" th:href="@{/admin/css/createGuide.css}"/>
+    </th:block>
+
+    <th:block th:if="${currentPath != null and currentPath.equals('/guides/manage/update')}">
+        <link rel="stylesheet" th:href="@{/admin/css/updateGuide.css}"/>
+    </th:block>
 </head>

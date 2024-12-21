@@ -1,14 +1,6 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
-import com.nimbusds.jose.*;
-import com.nimbusds.jose.crypto.MACSigner;
-import com.nimbusds.jose.crypto.MACVerifier;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.SignedJWT;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.AuthenticationRequest;
-import com.websitesaoviet.WebsiteSaoViet.dto.request.IntrospectRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.AuthenticationResponse;
-import com.websitesaoviet.WebsiteSaoViet.dto.response.IntrospectResponse;
 import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import com.websitesaoviet.WebsiteSaoViet.exception.AppException;
 import com.websitesaoviet.WebsiteSaoViet.exception.ErrorCode;
@@ -23,11 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
-
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -39,79 +26,33 @@ public class AuthenticationService {
     @Value("${jwt.signerKey}")
     protected String SIGNER_KEY;
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(String username, String password) {
         User user;
-        if (request.getUsername() != null && !request.getUsername().isEmpty() &&
-                request.getPassword() != null && !request.getPassword().isEmpty()
+        if (username != null && !username.isEmpty() &&
+                password != null && !password.isEmpty()
         ) {
-            if (request.getUsername().matches("\\d+")) {
-                user = userRepository.findUserBySDT(request.getUsername())
+            if (username.matches("\\d+")) {
+                user = userRepository.findUserBySDT(username)
                         .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_EXITED));
             } else {
-                user = userRepository.findUserByEmail(request.getUsername())
+                user = userRepository.findUserByEmail(username)
                         .orElseThrow(() -> new AppException(ErrorCode.ACCOUNT_NOT_EXITED));
             }
 
             PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
-            boolean authenticated = passwordEncoder.matches(request.getPassword(), user.getMatkhau());
+            boolean authenticated = passwordEncoder.matches(password, user.getMatkhau());
 
-            if(!authenticated) {
-                throw new AppException(ErrorCode.UNAUTHENTICATED);
+            if (!authenticated) {
+                throw new AppException(ErrorCode.LOGIN_FAILE);
             }
 
-            var token = generateToken(request.getUsername());
-
             return AuthenticationResponse.builder()
-                    .token(token)
+                    .user(user)
                     .authenticated(true)
                     .build();
         } else {
             throw new AppException(ErrorCode.NOT_NULL_LOGIN);
-        }
-    }
-
-    private String generateToken(String username) {
-        JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
-        JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
-                .subject(username)
-                .issuer("saoviet.com")
-                .issueTime(new Date())
-                .expirationTime(new Date(
-                    Instant.now().plus(Duration.ofHours(1)).toEpochMilli()
-                ))
-                .claim("nameuser", "Custom")
-                .build();
-
-        Payload payload = new Payload(jwtClaimsSet.toJSONObject());
-
-        JWSObject jwsObject = new JWSObject(header, payload);
-
-        try {
-            jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
-
-            return jwsObject.serialize();
-        } catch (JOSEException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public IntrospectResponse introspect(IntrospectRequest request) {
-        var token = request.getToken();
-
-        try {
-            JWSVerifier verifier = new MACVerifier(SIGNER_KEY.getBytes());
-            SignedJWT signedJWT = SignedJWT.parse(token);
-
-            Date expityTime = signedJWT.getJWTClaimsSet().getExpirationTime();
-
-            var verified = signedJWT.verify(verifier);
-
-            return IntrospectResponse.builder()
-                    .valid(verified && expityTime.after(new Date()))
-                    .build();
-        } catch (JOSEException | ParseException e) {
-            throw new RuntimeException(e);
         }
     }
 }

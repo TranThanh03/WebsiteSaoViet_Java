@@ -5,45 +5,45 @@
     <div th:replace="client/fragments/header :: header"></div>
     <main class="guide-detail">
         <div class="guide-profile">
-            <img th:src="@{/admin/img/guide/{img}(img=${guide.getAnhHDV()})}" alt="ảnh HDV" class="guide-image">
+            <img th:src="@{/admin/img/guide/{img}(img=${guide.anhhdv})}" alt="ảnh HDV" class="guide-image">
             <div class="guide-info">
-                <h1 th:text="${guide.getTenHDV()}"></h1>
+                <h1 th:text="${guide.tenhdv}"></h1>
                 <p>
-                    <strong>Thông tin:</strong> <span th:text="${guide.getGioiTinh()}"></span> -
-                    <span th:text="${guide.getTuoi()}"></span> tuổi
+                    <strong>Thông tin:</strong> <span th:text="${guide.gioitinh}"></span> -
+                    <span th:text="${guide.tuoi}"></span> tuổi
                 </p>
-                <p><strong>Số điện thoại:</strong> <span th:text="${guide.getSDT()}"></span></p>
-                <p><strong>Email:</strong> <span th:text="${guide.getEmail()}"></span></p>
-                <p><strong>Đánh giá:</strong> <span id="evaluate" th:text="${guide.getDanhGia()}"></span></p>
+                <p><strong>Số điện thoại:</strong> <span th:text="${guide.sdt}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${guide.email}"></span></p>
+                <p><strong>Đánh giá:</strong> <span id="evaluate" th:text="${guide.danhgia}"></span></p>
             </div>
         </div>
 
         <section class="guide-description">
             <h2>Giới thiệu</h2>
-            <p th:text="${guide.getMoTa()}"></p>
+            <p th:text="${guide.mota}"></p>
         </section>
 
         <section class="guide-booking">
-            <h2 th:text="'Đặt tour với ' + ${guide.getTenHDV()}"></h2>
+            <h2 th:text="'Đặt tour với ' + ${guide.tenhdv}"></h2>
             
             <div th:each="task : ${tasks}" class="tour-infor">
-                <a th:href="@{/tour/detail(id=${task.maTour})}">
-                    <img th:src="@{/admin/img/tour/{img}(img=${task.anhTour})}" alt="ảnh" id="tour-image">
+                <a th:href="@{/tour/detail(id=${task.getTour().matour})}">
+                    <img th:src="@{/admin/img/tour/{img}(img=${task.getTour().anhtour})}" alt="ảnh" id="tour-image">
                 </a>
-                <h3 th:text="${task.tenTour}"></h3>
+                <h3 th:text="${task.getTour().tentour}"></h3>
                 <p>
-                    <b>Ngày khởi hành: </b><span th:text="${#temporals.format(task.ngayKH, 'dd-MM-yyyy')}"></span>
+                    <b>Ngày khởi hành: </b><span th:text="${#temporals.format(task.getTask().ngaykh, 'dd-MM-yyyy')}"></span>
                 </p>
                 <p>
-                    <b>Ngày kết thúc: </b><span th:text="${#temporals.format(task.ngayKT, 'dd-MM-yyyy')}"></span>
+                    <b>Ngày kết thúc: </b><span th:text="${#temporals.format(task.getTask().ngaykt, 'dd-MM-yyyy')}"></span>
                 </p>
                 <p id="tour-cost">
-                    <strong>Giá Tour:</strong> <span style="color: red;" th:text="${task.giaTour} + ' VND'"></span>
+                    <strong>Giá Tour:</strong> <span style="color: red;" th:text="${task.getTour().giatour} + ' VND'"></span>
                 </p>
                 <p>
-                    <strong>Giá HDV:</strong> <span style="color: red;" th:text="${task.giaHDV} + ' VND'"></span>
+                    <strong>Giá HDV:</strong> <span style="color: red;" th:text="${task.getTask().giahdv} + ' VND'"></span>
                 </p>
-                <a th:href="@{/calendarContent/index(idTask=${task.maPC})}">
+                <a th:href="@{/calendars/booking/{idTask}(idTask=${task.getTask().mapc})}">
                     <button class="book-button">Đặt tour</button>
                 </a>
             </div>   

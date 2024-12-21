@@ -4,6 +4,7 @@ import com.websitesaoviet.WebsiteSaoViet.entity.Guide;
 import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
 import com.websitesaoviet.WebsiteSaoViet.service.GuideService;
 import com.websitesaoviet.WebsiteSaoViet.service.TourService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -11,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -29,6 +28,7 @@ public class HomeController {
     @GetMapping("/")
     public String homePage(HttpServletRequest request, Model model) {
         model.addAttribute("currentPath", request.getRequestURI());
+
         List<Tour> tours = tourService.getTourLatest();
         model.addAttribute("tours", tours);
 

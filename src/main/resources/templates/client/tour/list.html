@@ -9,12 +9,12 @@
         <h3>Khám phá các tour cùng Sao Việt hấp dẫn với nhiều địa điểm du lịch tuyệt vời</h3>
         <div class="tour-list">
             <div th:each="tour : ${tours}" class="tour-item">
-                <img th:src="@{/admin/img/tour/{image}(image=${tour.getAnhTour()})}" alt="Tour Image">
+                <img th:src="@{/admin/img/tour/{image}(image=${tour.anhtour})}" alt="Tour Image">
                 <div class="tour-info">
-                    <h2 th:text="${tour.getTenTour()}"></h2>
-                    <p th:text="${tour.getGioiThieu()}"></p>
-                    <p id="cost"><strong>Giá:</strong> <span th:text="${tour.getGiaTour()} + ' VND'"></span></p>
-                    <a th:href="@{/tours/detail/{id}(id=${tour.getMaTour()})}" class="btn-detail">Xem chi tiết</a>
+                    <h2 th:text="${tour.tentour}"></h2>
+                    <p th:text="${tour.gioithieu}"></p>
+                    <p id="cost"><strong>Giá:</strong> <span th:text="${tour.giatour} + ' VND'"></span></p>
+                    <a th:href="@{/tours/detail/{id}(id=${tour.matour})}" class="btn-detail">Xem chi tiết</a>
                 </div>
             </div>
         </div>

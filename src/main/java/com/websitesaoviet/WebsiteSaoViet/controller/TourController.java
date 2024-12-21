@@ -1,6 +1,5 @@
 package com.websitesaoviet.WebsiteSaoViet.controller;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
 import com.websitesaoviet.WebsiteSaoViet.service.TourService;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,15 +23,28 @@ public class TourController {
     TourService tourService;
 
     @PostMapping()
-    Tour createTour(@RequestBody TourCreationRequest request) {
-        return tourService.createTour(request);
+    public String createTour(@RequestParam String TenTour, @RequestParam String GioiThieu,
+                             @RequestParam int MaCD, @RequestParam(name="AnhTour") MultipartFile AnhTour,
+                             @RequestParam String MoTa, @RequestParam String Gia
+                             ) {
+
+        tourService.createTour(TenTour, GioiThieu, MaCD, AnhTour, MoTa, Gia);
+
+        return "redirect:/tours/manage/index";
     }
 
-    @GetMapping("")
+    @GetMapping("/category")
     public String getTours(HttpServletRequest request, Model model) {
         model.addAttribute("currentPath", request.getRequestURI());
 
         return "client/tour/index";
+    }
+
+    @GetMapping("/manage/create")
+    public String showCreateForm(HttpServletRequest request, Model model) {
+        model.addAttribute("currentPath", request.getRequestURI());
+
+        return "admin/tour/create";
     }
 
     @GetMapping("/index")

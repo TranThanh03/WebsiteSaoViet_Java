@@ -20,15 +20,15 @@
             <h2>Danh sách hướng dẫn viên</h2>
             <div class="guide-grid">
                 <div th:each="guide : ${guides}" class="guide-card">
-                    <img th:src="@{/admin/img/guide/{img}(img=${guide.anhHDV})}" alt="ảnh">
-                    <h3 th:text="${guide.tenHDV}"></h3>
+                    <img th:src="@{/admin/img/guide/{img}(img=${guide.anhhdv})}" alt="ảnh">
+                    <h3 th:text="${guide.tenhdv}"></h3>
                     <p>
-                        Thông tin: <span th:text="${guide.gioiTinh}"></span> -
-                        <span th:text="${guide.getTuoi()}"></span> tuổi
+                        Thông tin: <span th:text="${guide.gioitinh}"></span> -
+                        <span th:text="${guide.tuoi}"></span> tuổi
                     </p>
-                    <p>Đánh giá: <span id="evaluate" th:text="${guide.danhGia}"></span></p>
+                    <p>Đánh giá: <span id="evaluate" th:text="${guide.danhgia}"></span></p>
                     <p style="text-align: center;">
-                        <a th:href="@{/guides/detail/{id}(id=${guide.maHDV})}">
+                        <a th:href="@{/guides/detail/{id}(id=${guide.mahdv})}">
                             <button type="button">Xem chi tiết</button>
                         </a>
                     </p>

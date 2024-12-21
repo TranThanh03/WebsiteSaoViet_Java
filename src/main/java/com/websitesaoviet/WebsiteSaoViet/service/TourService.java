@@ -1,16 +1,24 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
-import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
 import com.websitesaoviet.WebsiteSaoViet.repository.TourRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.NonFinal;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,15 +27,35 @@ import java.util.List;
 public class TourService {
     TourRepository tourRepository;
 
-    public Tour createTour(TourCreationRequest request) {
+    @NonFinal
+    @Value("${file.uploadTourDir}")
+    protected String uploadDir;
+
+    public Tour createTour(String TenTour, String GioiThieu,
+                           int MaCD, MultipartFile AnhTour,
+                           String MoTa, String Gia) {
+        try {
+            String uploadDirPath = new File(uploadDir).getAbsolutePath();
+            Path path = Paths.get(uploadDirPath, AnhTour.getOriginalFilename());
+            File file = path.toFile();
+
+            if (!file.exists()) {
+                AnhTour.transferTo(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         Tour tour = new Tour();
 
-//        tour.setTenTour(request.getTenTour());
-//        tour.setAnhTour(request.getAnhTour());
-//        tour.setGioiThieu(request.getGioiThieu());
-//        tour.setMoTa(request.getMoTa());
-//        tour.setMaCD(request.getMaCD());
-//        tour.setGiaTour(request.getGiaTour());
+        tour.setTentour(TenTour);
+        tour.setGioithieu(GioiThieu);
+        tour.setMacd(MaCD);
+        tour.setAnhtour(AnhTour.getOriginalFilename());
+        tour.setMota(MoTa);
+        tour.setGiatour(Gia);
+        tour.setNgaytao(LocalDateTime.now());
 
         return tourRepository.save(tour);
     }

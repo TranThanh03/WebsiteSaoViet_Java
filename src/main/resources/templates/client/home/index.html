@@ -42,11 +42,11 @@
         <div class="container">
             <div class="content" id="tour">
                 <div th:each="tour : ${tours}">
-                    <a th:href="@{/tours/detail/{id}(id=${tour.getMaTour()})}">
+                    <a th:href="@{/tours/detail/{id}(id=${tour.getMatour()})}">
                         <div class="sub-list" id="sub-tour">
-                            <img th:src="@{/admin/img/tour/{image}(image=${tour.getAnhTour()})}" alt="anh tour" id="avatar-tour">
-                            <h4 id="tour-name" th:text="${tour.getTenTour()}"></h4>
-                            <span id="tour-price" th:text="${tour.getGiaTour()} + ' VND'"></span>
+                            <img th:src="@{/admin/img/tour/{image}(image=${tour.getAnhtour()})}" alt="anh tour" id="avatar-tour">
+                            <h4 id="tour-name" th:text="${tour.getTentour()}"></h4>
+                            <span id="tour-price" th:text="${tour.getGiatour()} + ' VND'"></span>
                         </div>
                     </a>
                 </div>
@@ -71,10 +71,10 @@
         <div class="container">
             <div class="content" id="guide">
                 <div th:each="guide : ${guides}">
-                    <a th:href="@{/guides/detail/{id}(id=${guide.getMaHDV()})}">
+                    <a th:href="@{/guides/detail/{id}(id=${guide.getMahdv()})}">
                         <div class="sub-list" id="sub-guide">
-                            <img th:src="@{/admin/img/guide/{image}(image=${guide.getAnhHDV()})}" alt="anh hdv" id="avatar-guide">
-                            <h4 id="guide-name" th:text="${guide.getTenHDV()}"></h4>
+                            <img th:src="@{/admin/img/guide/{image}(image=${guide.getAnhhdv()})}" alt="anh hdv" id="avatar-guide">
+                            <h4 id="guide-name" th:text="${guide.getTenhdv()}"></h4>
                             <span id="guide-age" th:text="${guide.getTuoi()} + ' tuổi'"></span>
                         </div>
                     </a>
@@ -88,7 +88,7 @@
             </button>
         </div>
     </div>
-    
+
     <footer th:replace="client/fragments/footer::footer"></footer>
 </body>
 </html>

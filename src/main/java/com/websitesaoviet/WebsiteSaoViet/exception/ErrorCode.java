@@ -8,7 +8,9 @@ public enum ErrorCode {
     PHONENUMBER_INVALID(1004, "Số điện thoại phải có đúng 10 chữ số!"),
     NOT_NULL_LOGIN(1005, "Vui lòng nhập thông tin để đăng nhập!"),
     ACCOUNT_NOT_EXITED(1006, "Tài khoản không tồn tại!"),
-    UNAUTHENTICATED(1007, "Unauthenticated");
+    UNAUTHENTICATED(1007, "Unauthenticated"),
+    USER_NOT_EXISTED(1008, "User not existed!"),
+    LOGIN_FAILE(1009, "Tài khoản hoặc mật khẩu không đúng!")
     ;
     ErrorCode(int code, String message) {
         this.code = code;

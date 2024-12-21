@@ -1,5 +1,6 @@
 package com.websitesaoviet.WebsiteSaoViet.dto.response;
 
+import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,6 +10,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationResponse {
-    String token;
+    User user;
     boolean authenticated;
 }

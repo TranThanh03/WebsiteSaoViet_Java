@@ -4,17 +4,17 @@
 <body>
     <div th:replace="client/fragments/header :: header"></div>
     <div class="tour-details">
-        <h1 th:text="${tour.getTenTour()}"></h1>
+        <h1 th:text="${tour.tentour}"></h1>
         <div class="tour-info">
             <div class="tour-image">
-                <img th:src="@{/admin/img/tour/{image}(image=${tour.getAnhTour()})}" alt="Tour Image">
+                <img th:src="@{/admin/img/tour/{image}(image=${tour.anhtour})}" alt="Tour Image">
             </div>
             <div class="tour-infor">
                 <h2 id="introduce-tour">Giới thiệu:</h2>
-                <span id="introduce" th:text="${tour.getGioiThieu()}"></span>
+                <span id="introduce" th:text="${tour.gioithieu}"></span>
                 <h2 id="price-tour">Giá Tour:</h2>
-                <p id="price" th:text="${tour.getGiaTour()} + ' VND'"></p>
-                <a th:href="@{/tasks/list/{id}(id=${tour.getMaTour()})}">
+                <p id="price" th:text="${tour.giatour} + ' VND'"></p>
+                <a th:href="@{/tasks/list/{id}(id=${tour.matour})}">
                     <button class="book-now">Đặt ngay</button>
                 </a>
             </div>
@@ -22,7 +22,7 @@
 
         <div class="tour-schedule">
             <h2>Nội dung chi tiết</h2>
-            <div class="tour-detail" th:utext="${tour.getMoTa()}"></div>
+            <div class="tour-detail" th:utext="${tour.mota}"></div>
         </div>
     </div>
     

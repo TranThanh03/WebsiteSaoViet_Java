@@ -23,4 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
     iconCalendar.addEventListener('click', () => {
         sessionStorage.removeItem('statusCalendar');
     })
-});
+
+    const authToken = getCookieValue('idUser');
+})
+
+function getCookieValue(cookieName) {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(cookieName + '=')) {
+            return decodeURIComponent(cookie.substring(cookieName.length + 1));
+        }
+    }
+    return null;
+}

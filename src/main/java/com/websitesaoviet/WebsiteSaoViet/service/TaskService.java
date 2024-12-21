@@ -47,6 +47,10 @@ public class TaskService {
         return taskRepository.findGuidesByTourId(id);
     }
 
+    public List<TaskTourGuideRequest> findToursByTourId(String id) {
+        return taskRepository.findToursByGuideId(id);
+    }
+
     public Task updateTask(int id, TaskUpdateRequest request) {
         Task task = getTaskById(id);
 
