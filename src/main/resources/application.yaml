@@ -9,6 +9,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
   servlet:
     multipart:
@@ -20,4 +21,4 @@ jwt:
   signerKey: "Kd9MaZx0dCCR2lP0VtocThdOYZQLVauemhkc0LqeuNo7W+rt+WkJald+Pil7fb5T"
 
 file:
-  uploadTourDir: D:\Java\WebsiteSaoViet_Java\src\main\resources\static\admin\img\tour
+  uploadTourDir: D:/Java/WebsiteSaoViet_Java/src/main/resources/static/admin/img/tour

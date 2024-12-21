@@ -41,7 +41,7 @@ public class Guide {
     @Column(name = "email")
     String email;
 
-    @Column(name = "mo_ta")
+    @Column(name = "mo_ta", columnDefinition = "TEXT")
     String mota;
 
     @Column(name = "danh_gia")

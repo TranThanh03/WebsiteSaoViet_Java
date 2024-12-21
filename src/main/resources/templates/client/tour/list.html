@@ -12,7 +12,7 @@
                 <img th:src="@{/admin/img/tour/{image}(image=${tour.anhtour})}" alt="Tour Image">
                 <div class="tour-info">
                     <h2 th:text="${tour.tentour}"></h2>
-                    <p th:text="${tour.gioithieu}"></p>
+                    <div th:utext="${tour.gioithieu}"></div>
                     <p id="cost"><strong>Giá:</strong> <span th:text="${tour.giatour} + ' VND'"></span></p>
                     <a th:href="@{/tours/detail/{id}(id=${tour.matour})}" class="btn-detail">Xem chi tiết</a>
                 </div>

@@ -26,10 +26,10 @@ public class Tour {
     @Column(name = "anh_tour")
     String anhtour;
 
-    @Column(name = "gioi_thieu")
+    @Column(name = "gioi_thieu", columnDefinition = "LONGTEXT")
     String gioithieu;
 
-    @Column(name = "mo_ta")
+    @Column(name = "mo_ta", columnDefinition = "LONGTEXT")
     String mota;
 
     @Column(name = "macd")

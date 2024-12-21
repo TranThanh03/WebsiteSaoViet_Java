@@ -11,7 +11,7 @@
             </div>
             <div class="tour-infor">
                 <h2 id="introduce-tour">Giới thiệu:</h2>
-                <span id="introduce" th:text="${tour.gioithieu}"></span>
+                <div id="introduce" th:utext="${tour.gioithieu}"></div>
                 <h2 id="price-tour">Giá Tour:</h2>
                 <p id="price" th:text="${tour.giatour} + ' VND'"></p>
                 <a th:href="@{/tasks/list/{id}(id=${tour.matour})}">
