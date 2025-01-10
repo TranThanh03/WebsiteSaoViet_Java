@@ -5,7 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "khachhang")
+@Table(name = "user")
 
 @Data
 @NoArgsConstructor
@@ -14,13 +14,21 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "makh", unique = true)
-    String MaKH;
+    @Column(name = "id", unique = true)
+    String id;
 
-    @Column(name = "tenkh")
-    String TenKH;
+    @Column(name = "full_name")
+    String fullName;
 
-    @Column(name = "matk")
-    String MaTK;
+    @Column(name = "phone", unique = true)
+    String phone;
+
+    @Column(name = "email", unique = true)
+    String email;
+
+    @Column(name = "password")
+    String password;
+
+    @Column(name = "role")
+    String role = null;
 }

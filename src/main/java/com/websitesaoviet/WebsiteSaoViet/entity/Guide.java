@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "huongdanvien")
+@Table(name = "guide")
 
 @Data
 @NoArgsConstructor
@@ -16,31 +16,30 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Guide {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "mahdv", unique = true)
-    String MaHDV;
+    @Column(name = "id", unique = true)
+    String id;
 
-    @Column(name = "tenhdv")
-    String TenHDV;
+    @Column(name = "full_name")
+    String fullName;
 
-    @Column(name = "anhhdv")
-    String AnhHDV;
+    @Column(name = "avatar")
+    String avatar;
 
-    @Column(name = "gioi_tinh")
-    String GioiTinh;
+    @Column(name = "sex")
+    String sex;
 
-    @Column(name = "ngay_sinh")
-    LocalDate NgaySinh;
+    @Column(name = "date_of_birth")
+    LocalDate dateOfBirth;
 
-    @Column(name = "sdt")
-    String SDT;
+    @Column(name = "phone")
+    String phone;
 
     @Column(name = "email")
-    String Email;
+    String email;
 
-    @Column(name = "mo_ta")
-    String MoTa;
+    @Column(name = "description")
+    String description;
 
-    @Column(name = "danh_gia")
-    int DanhGia;
+    @Column(name = "evaluate")
+    int evaluate;
 }

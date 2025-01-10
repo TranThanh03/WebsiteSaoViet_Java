@@ -5,33 +5,25 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "tour")
+@Table(name = "category")
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Tour {
+public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
-    String id;
+    int id;
 
     @Column(name = "name")
     String name;
 
-    @Column(name = "image")
+    @Column(name="image")
     String image;
-
-    @Column(name = "introduce")
-    String introduce;
 
     @Column(name = "description")
     String description;
-
-    @Column(name = "category_id")
-    int categoryId;
-
-    @Column(name = "price")
-    String price;
 }

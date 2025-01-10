@@ -2,7 +2,11 @@ package com.websitesaoviet.WebsiteSaoViet.service;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TourCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.TourUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.response.TourResponse;
 import com.websitesaoviet.WebsiteSaoViet.entity.Tour;
+import com.websitesaoviet.WebsiteSaoViet.exception.AppException;
+import com.websitesaoviet.WebsiteSaoViet.exception.ErrorCode;
+import com.websitesaoviet.WebsiteSaoViet.mapper.TourMapper;
 import com.websitesaoviet.WebsiteSaoViet.repository.TourRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -11,51 +15,59 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Service
 public class TourService {
     TourRepository tourRepository;
+    TourMapper tourMapper;
 
-    public Tour createTour(TourCreationRequest request) {
-        Tour tour = new Tour();
+    public TourResponse createTour(TourCreationRequest request) {
+        Tour tour = tourMapper.createTour(request);
 
-        tour.setTenTour(request.getTenTour());
-        tour.setAnhTour(request.getAnhTour());
-        tour.setGioiThieu(request.getGioiThieu());
-        tour.setMoTa(request.getMoTa());
-        tour.setMaCD(request.getMaCD());
-        tour.setGiaTour(request.getGiaTour());
+        tour.setId(String.valueOf(generateNextId()));
 
-        return tourRepository.save(tour);
+        return tourMapper.toTourResponse(tourRepository.save(tour));
     }
 
-    public List<Tour> getTours() {
-        return tourRepository.findAll();
+    public List<TourResponse> getTours() {
+        return tourMapper.toListToursResponse(tourRepository.findAll());
     }
 
-    public Tour getTourById(String id) {
-        return tourRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tour không hợp lệ!"));
+    public TourResponse getTourById(String id) {
+        return  tourMapper.toTourResponse(tourRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.TOUR_NOT_EXITED)));
     }
 
-    public Tour updateTour(String id, TourUpdateRequest request) {
-        Tour tour = getTourById(id);
+    public TourResponse updateTour(String id, TourUpdateRequest request) {
+        Tour tour = tourRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.TOUR_NOT_EXITED));
 
-        tour.setTenTour(request.getTenTour());
-        tour.setGioiThieu(request.getGioiThieu());
-        tour.setMoTa(request.getMoTa());
-        tour.setMaCD(request.getMaCD());
-        tour.setGiaTour(request.getGiaTour());
-
-        if(request.getAnhTour() != null && !request.getAnhTour().isEmpty()) {
-            tour.setAnhTour(request.getAnhTour());
+        if (tour == null) {
+            throw new AppException(ErrorCode.TOUR_NOT_EXITED);
         }
 
-        return tourRepository.save(tour);
+        tourMapper.updateTour(tour, request);
+
+        return tourMapper.toTourResponse(tourRepository.save(tour));
     }
 
     public void deleteTour(String id) {
+        if (!tourRepository.existsById(id)) {
+            throw new AppException(ErrorCode.TOUR_NOT_EXITED);
+        }
+
         tourRepository.deleteById(id);
+    }
+
+    public String generateNextId() {
+        String maxId = tourRepository.findMaxId();
+        if (maxId == null) {
+            return "T25001";
+        }
+
+        int currentMax = Integer.parseInt(maxId.substring(1));
+        int nextId = currentMax + 1;
+        return "T" + nextId;
     }
 }

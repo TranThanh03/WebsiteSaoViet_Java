@@ -2,8 +2,11 @@ package com.websitesaoviet.WebsiteSaoViet.controller;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.response.ApiResponse;
+import com.websitesaoviet.WebsiteSaoViet.dto.response.UserResponse;
 import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import com.websitesaoviet.WebsiteSaoViet.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,29 +23,55 @@ public class UserController {
     UserService userService;
 
     @PostMapping()
-    User createUser(@RequestBody UserCreationRequest request) {
-        return userService.createUser(request);
+    ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<UserResponse> apiResponse = ApiResponse.<UserResponse>builder()
+                .code(1099)
+                .message("Thêm khách hàng mới thành công.")
+                .result(userService.createUser(request))
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
     }
 
     @GetMapping()
-    List<User> getUsers() {
-        return userService.getUsers();
+    ResponseEntity<ApiResponse<List<UserResponse>>> getUsers() {
+        ApiResponse<List<UserResponse>> apiResponse = ApiResponse.<List<UserResponse>>builder()
+                .code(1098)
+                .result(userService.getUsers())
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
     }
 
     @GetMapping("/{id}")
-    User getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
+    ResponseEntity<ApiResponse<UserResponse>> getUserById(@PathVariable String id) {
+        ApiResponse<UserResponse> apiResponse = ApiResponse.<UserResponse>builder()
+                .code(1097)
+                .result(userService.getUserById(id))
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
     }
 
     @PutMapping("/{id}")
-    User updateUser(@PathVariable String id, @RequestBody UserUpdateRequest request) {
-        return userService.updateUser(id, request);
+    ResponseEntity<ApiResponse<UserResponse>> updateUser(@PathVariable String id, @RequestBody @Valid UserUpdateRequest request) {
+        ApiResponse<UserResponse> apiResponse = ApiResponse.<UserResponse>builder()
+                .code(1096)
+                .message(String.format("Cập nhật thông tin khách hàng %s thành công.", id))
+                .result(userService.updateUser(id, request))
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteUser(@PathVariable String id) {
-        userService.deleteAccount(id);
-        String message = String.format("Xóa khách hàng thành công.");
-        return ResponseEntity.ok(message);
+    ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+
+        ApiResponse<String> apiResponse = new ApiResponse<>();
+        apiResponse.setCode(1095);
+        apiResponse.setMessage(String.format("Xóa khách hàng %s thành công.", id));
+
+        return ResponseEntity.ok(apiResponse);
     }
 }

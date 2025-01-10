@@ -1,4 +1,4 @@
-package com.websitesaoviet.WebsiteSaoViet.dto.request;
+package com.websitesaoviet.WebsiteSaoViet.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +8,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CalendarUpdateRequest {
-    String TrangThai;
+public class CategoryResponse {
+    int id;
+    String name;
+    String image;
 }

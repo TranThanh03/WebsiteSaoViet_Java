@@ -9,10 +9,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountResponse {
-    String MaTK;
-    String SDT;
-    String Email;
-    String MatKhau;
-    String Quyen;
+public class TourResponse {
+    String id;
+    String name;
+    String image;
+    String introduce;
+    String description;
+    int categoryId;
+    String price;
 }

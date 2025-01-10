@@ -1,5 +1,8 @@
 package com.websitesaoviet.WebsiteSaoViet.dto.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,10 +12,10 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TourCreationRequest {
-    String TenTour;
-    String AnhTour;
-    String GioiThieu;
-    String MoTa;
-    int MaCD;
-    String GiaTour;
+    String name;
+    String image;
+    String introduce;
+    String description;
+    int categoryId;
+    String price;
 }
