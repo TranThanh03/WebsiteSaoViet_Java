@@ -37,7 +37,7 @@ public class Guide {
     @Column(name = "email")
     String email;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "LONGTEXT")
     String description;
 
     @Column(name = "evaluate")

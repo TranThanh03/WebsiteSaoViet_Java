@@ -4,7 +4,6 @@ import com.websitesaoviet.WebsiteSaoViet.dto.request.UserCreationRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.request.UserUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.ApiResponse;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.UserResponse;
-import com.websitesaoviet.WebsiteSaoViet.entity.User;
 import com.websitesaoviet.WebsiteSaoViet.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -25,7 +24,7 @@ public class UserController {
     @PostMapping()
     ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody @Valid UserCreationRequest request) {
         ApiResponse<UserResponse> apiResponse = ApiResponse.<UserResponse>builder()
-                .code(1099)
+                .code(1999)
                 .message("Thêm khách hàng mới thành công.")
                 .result(userService.createUser(request))
                 .build();
@@ -36,7 +35,7 @@ public class UserController {
     @GetMapping()
     ResponseEntity<ApiResponse<List<UserResponse>>> getUsers() {
         ApiResponse<List<UserResponse>> apiResponse = ApiResponse.<List<UserResponse>>builder()
-                .code(1098)
+                .code(1998)
                 .result(userService.getUsers())
                 .build();
 
@@ -46,7 +45,7 @@ public class UserController {
     @GetMapping("/{id}")
     ResponseEntity<ApiResponse<UserResponse>> getUserById(@PathVariable String id) {
         ApiResponse<UserResponse> apiResponse = ApiResponse.<UserResponse>builder()
-                .code(1097)
+                .code(1997)
                 .result(userService.getUserById(id))
                 .build();
 
@@ -56,7 +55,7 @@ public class UserController {
     @PutMapping("/{id}")
     ResponseEntity<ApiResponse<UserResponse>> updateUser(@PathVariable String id, @RequestBody @Valid UserUpdateRequest request) {
         ApiResponse<UserResponse> apiResponse = ApiResponse.<UserResponse>builder()
-                .code(1096)
+                .code(1996)
                 .message(String.format("Cập nhật thông tin khách hàng %s thành công.", id))
                 .result(userService.updateUser(id, request))
                 .build();
@@ -69,7 +68,7 @@ public class UserController {
         userService.deleteUser(id);
 
         ApiResponse<String> apiResponse = new ApiResponse<>();
-        apiResponse.setCode(1095);
+        apiResponse.setCode(1995);
         apiResponse.setMessage(String.format("Xóa khách hàng %s thành công.", id));
 
         return ResponseEntity.ok(apiResponse);

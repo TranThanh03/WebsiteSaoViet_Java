@@ -26,7 +26,7 @@ public class TourController {
     @PostMapping()
     ResponseEntity<ApiResponse<TourResponse>> createTour(@RequestBody TourCreationRequest request) {
         ApiResponse<TourResponse> apiResponse = ApiResponse.<TourResponse>builder()
-                .code(1089)
+                .code(1989)
                 .message("Thêm tour mới thành công.")
                 .result(tourService.createTour(request))
                 .build();
@@ -37,7 +37,7 @@ public class TourController {
     @GetMapping()
     ResponseEntity<ApiResponse<List<TourResponse>>> getTours() {
         ApiResponse<List<TourResponse>> apiResponse = ApiResponse.<List<TourResponse>>builder()
-                .code(1088)
+                .code(1988)
                 .result(tourService.getTours())
                 .build();
 
@@ -47,7 +47,7 @@ public class TourController {
     @GetMapping("/category")
     ResponseEntity<ApiResponse<List<CategoryResponse>>> getTourCategory() {
         ApiResponse<List<CategoryResponse>> apiResponse = ApiResponse.<List<CategoryResponse>>builder()
-                .code(1087)
+                .code(1987)
                 .result(categoryService.getTourCategory())
                 .build();
 
@@ -57,7 +57,7 @@ public class TourController {
     @GetMapping("/{id}")
     ResponseEntity<ApiResponse<TourResponse>> getTourById(@PathVariable String id) {
         ApiResponse<TourResponse> apiResponse = ApiResponse.<TourResponse>builder()
-                .code(1086)
+                .code(1986)
                 .result(tourService.getTourById(id))
                 .build();
 
@@ -67,7 +67,7 @@ public class TourController {
     @PutMapping("/{id}")
     ResponseEntity<ApiResponse<TourResponse>> updateTour(@PathVariable String id, @RequestBody TourUpdateRequest request) {
         ApiResponse<TourResponse> apiResponse = ApiResponse.<TourResponse>builder()
-                .code(1085)
+                .code(1985)
                 .message("Cập nhật thông tin tour thành công.")
                 .result(tourService.updateTour(id, request))
                 .build();
@@ -80,7 +80,7 @@ public class TourController {
         tourService.deleteTour(id);
 
         ApiResponse<String> apiResponse = new ApiResponse<>();
-        apiResponse.setCode(1084);
+        apiResponse.setCode(1984);
         apiResponse.setMessage("Xóa tour thành công.");
 
         return ResponseEntity.ok(apiResponse);

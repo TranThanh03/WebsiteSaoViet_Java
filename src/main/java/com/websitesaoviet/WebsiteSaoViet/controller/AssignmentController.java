@@ -1,6 +1,7 @@
 package com.websitesaoviet.WebsiteSaoViet.controller;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AssignmentCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.AssignmentUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.ApiResponse;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.AssignmentResponse;
 import com.websitesaoviet.WebsiteSaoViet.service.AssignmentService;
@@ -23,7 +24,7 @@ public class AssignmentController {
     @PostMapping()
     ResponseEntity<ApiResponse<AssignmentResponse>> createAssignment(@RequestBody @Valid AssignmentCreationRequest request) {
         ApiResponse<AssignmentResponse> apiResponse = ApiResponse.<AssignmentResponse>builder()
-                .code(1079)
+                .code(1979)
                 .message("Thêm lịch phân công mới thành công.")
                 .result(assignmentService.createAssignment(request))
                 .build();
@@ -34,8 +35,18 @@ public class AssignmentController {
     @GetMapping()
     ResponseEntity<ApiResponse<List<AssignmentResponse>>> getAssignments() {
         ApiResponse<List<AssignmentResponse>> apiResponse = ApiResponse.<List<AssignmentResponse>>builder()
-                .code(1078)
+                .code(1978)
                 .result(assignmentService.getAssignments())
+                .build();
+
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    @PutMapping("/{id}")
+    ResponseEntity<ApiResponse<AssignmentResponse>> updateAssignment(@PathVariable String id, @RequestBody AssignmentUpdateRequest request) {
+        ApiResponse<AssignmentResponse> apiResponse = ApiResponse.<AssignmentResponse>builder()
+                .code(1976)
+                .result(assignmentService.updateAssignment(id, request))
                 .build();
 
         return ResponseEntity.ok(apiResponse);
@@ -46,7 +57,7 @@ public class AssignmentController {
         assignmentService.deleteAssignment(id);
 
         ApiResponse<String> apiResponse = new ApiResponse<>();
-        apiResponse.setCode(1077);
+        apiResponse.setCode(1975);
         apiResponse.setMessage(String.format("Xóa lịch phân công %s thành công.", id));
 
         return ResponseEntity.ok(apiResponse);

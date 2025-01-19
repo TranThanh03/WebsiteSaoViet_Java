@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,6 +27,7 @@ public class TourService {
         Tour tour = tourMapper.createTour(request);
 
         tour.setId(String.valueOf(generateNextId()));
+        tour.setTimeCreated(LocalDateTime.now());
 
         return tourMapper.toTourResponse(tourRepository.save(tour));
     }
@@ -48,6 +50,7 @@ public class TourService {
         }
 
         tourMapper.updateTour(tour, request);
+        tour.setTimeCreated(LocalDateTime.now());
 
         return tourMapper.toTourResponse(tourRepository.save(tour));
     }

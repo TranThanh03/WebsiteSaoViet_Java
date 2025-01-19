@@ -1,6 +1,7 @@
 package com.websitesaoviet.WebsiteSaoViet.service;
 
 import com.websitesaoviet.WebsiteSaoViet.dto.request.AssignmentCreationRequest;
+import com.websitesaoviet.WebsiteSaoViet.dto.request.AssignmentUpdateRequest;
 import com.websitesaoviet.WebsiteSaoViet.dto.response.AssignmentResponse;
 import com.websitesaoviet.WebsiteSaoViet.entity.Assignment;
 import com.websitesaoviet.WebsiteSaoViet.exception.AppException;
@@ -46,6 +47,19 @@ public class AssignmentService {
 
     public List<AssignmentResponse> getAssignments() {
         return assignmentMapper.toListAssignmentsResponse(assignmentRepository.findAll());
+    }
+
+    public AssignmentResponse updateAssignment(String id, AssignmentUpdateRequest request) {
+        Assignment assignment = assignmentRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.ASSIGNMENT_NOT_EXITED));
+
+        if (assignment == null) {
+            throw new AppException(ErrorCode.ASSIGNMENT_NOT_EXITED);
+        }
+
+        assignment.setStatus("Đã kết thúc");
+
+        return assignmentMapper.toAssignmentResponse(assignmentRepository.save(assignment));
     }
 
     public void deleteAssignment(String id) {

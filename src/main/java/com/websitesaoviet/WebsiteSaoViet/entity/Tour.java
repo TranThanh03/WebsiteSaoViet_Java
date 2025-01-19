@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tour")
 
@@ -23,10 +25,10 @@ public class Tour {
     @Column(name = "image")
     String image;
 
-    @Column(name = "introduce")
+    @Column(name = "introduce", columnDefinition = "LONGTEXT")
     String introduce;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "LONGTEXT")
     String description;
 
     @Column(name = "category_id")
@@ -34,4 +36,7 @@ public class Tour {
 
     @Column(name = "price")
     String price;
+
+    @Column(name = "time_created")
+    LocalDateTime timeCreated;
 }

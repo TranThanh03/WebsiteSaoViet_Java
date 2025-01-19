@@ -12,14 +12,18 @@ public enum ErrorCode {
     EMAIL_INVALID(1005, "Email phải đúng định dạng 'example@example.com'!"),
     NOT_NULL_LOGIN(1006, "Vui lòng nhập thông tin để đăng nhập!"),
     USER_NOT_EXITED(1007, "Khách hàng không tồn tại!"),
-    TOUR_NOT_EXITED(1008, "Tour không tồn tại!"),
-    PEOPLE_INVALID(1009, "Số lượng người phải lớn hơn 0!"),
-    ASSIGNMENT_NOT_EXITED(1010, "Lịch phân công không tồn tại!"),
-    GUIDE_ASSIGNED(1011, "Hướng dẫn viên này bị trùng lịch phân công!"),
-    STARTDATE_NOT_NULL(1012, "Ngày khởi hành không được bỏ trống!"),
-    ENDDATE_NOT_NULL(1013, "Ngày kết thúc không được bỏ trống!"),
-    STARTDATE_INVALID(1014, "Ngày khởi hành không được trước ngày " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "!"),
-    ENDDATE_INVALID(1015, "Ngày kết thúc không được trước ngày khởi hành!")
+    UNAUTHENTICATED(1008, "Tài khoản hoặc mật khẩu không đúng!"),
+    TOUR_NOT_EXITED(1009, "Tour không tồn tại!"),
+    PEOPLE_INVALID(1010, "Số lượng người phải lớn hơn 0!"),
+    ASSIGNMENT_NOT_EXITED(1011, "Lịch phân công không tồn tại!"),
+    GUIDE_ASSIGNED(1012, "Hướng dẫn viên này bị trùng lịch phân công!"),
+    STARTDATE_NOT_NULL(1013, "Ngày khởi hành không được bỏ trống!"),
+    ENDDATE_NOT_NULL(1014, "Ngày kết thúc không được bỏ trống!"),
+    STARTDATE_INVALID(1015, "Ngày khởi hành không được trước ngày " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "!"),
+    ENDDATE_INVALID(1016, "Ngày kết thúc không được trước ngày khởi hành!"),
+    GUIDE_NOT_EXITED(1017, "Hướng dẫn viên không tồn tại!"),
+    ORDER_NOT_EXITED(1018, "Lịch đặt không tồn tại!"),
+    PAYMENT_NOT_EXITED(1019, "Hóa đơn không tồn tại!")
     ;
     ErrorCode(int code, String message) {
         this.code = code;

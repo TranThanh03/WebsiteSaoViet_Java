@@ -8,11 +8,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TourCreationRequest {
-    String name;
-    String image;
-    String introduce;
-    String description;
-    int categoryId;
-    String price;
+public class PaymentUpdateRequest {
+    String amount;
+    String method;
 }

@@ -1,23 +1,23 @@
 package com.websitesaoviet.WebsiteSaoViet.dto.response;
 
-import jakarta.persistence.Column;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TourResponse {
+public class GuideResponse {
     String id;
-    String name;
-    String image;
-    String introduce;
+    String fullName;
+    String avatar;
+    String sex;
+    LocalDate dateOfBirth;
+    String phone;
+    String email;
     String description;
-    int categoryId;
-    String price;
-    LocalDateTime timeCreated;
+    int evaluate;
 }

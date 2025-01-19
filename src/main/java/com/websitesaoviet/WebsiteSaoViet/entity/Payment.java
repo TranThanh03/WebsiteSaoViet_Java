@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "payment")
 
@@ -28,5 +30,5 @@ public class Payment {
     String method;
 
     @Column(name = "payment_datetime")
-    String paymentDatetime;
+    LocalDateTime paymentDatetime;
 }
